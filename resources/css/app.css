@@ -1,3 +1,13 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+@layer utilities {
+    .active {
+        @apply font-semibold text-black border-b-2 border-gray-700
+    }
+}
