@@ -8,6 +8,6 @@
 
 @layer utilities {
     .active {
-        @apply font-semibold text-black border-b-2 border-gray-700
+        @apply font-semibold text-black border-b-2 border-gray-700 dark:border-gray-300
     }
 }
