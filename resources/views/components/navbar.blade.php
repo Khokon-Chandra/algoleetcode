@@ -78,7 +78,7 @@
 </nav>
 
 
-<nav id="mobileMenu" class="md:hidden fixed top-0 left-0 -z-10 w-full h-full bg-gray-100 dark:bg-gray-800">
+<nav id="mobileMenu" class="md:hidden fixed top-0 left-0 -z-20 opacity-0 w-full h-full bg-gray-100 dark:bg-gray-800">
 
     <div class="border-b border-gray-300 dark:border-gray-600 flex justify-between items-center px-6 py-4">
         <div class="space-x-4">
@@ -88,7 +88,7 @@
                 href="#">Sign In</a>
         </div>
 
-        <span
+        <span id="closeMobileNav"
             class="text-gray-600 dark:text-gray-300 text-xl cursor-pointer hover:text-gray-900 dark:hover:text-gray-100"><i
                 class="fa fa-close"></i></span>
 
