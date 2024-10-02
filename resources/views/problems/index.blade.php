@@ -73,147 +73,13 @@
 
             {{-- Filter bar --}}
 
-            <div class="flex flex-col gap-4">
-                <div class="flex w-full flex-wrap gap-2">
-
-                    <x-filter-dropdown action="Lists">
-
-                        <li>
-                            <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                <div class="flex items-center h-5">
-                                    <input id="helper-checkbox-1" aria-describedby="helper-checkbox-text-1"
-                                        type="checkbox" value=""
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                </div>
-                                <div class="ms-2 text-sm">
-                                    <label for="helper-checkbox-1" class="font-medium text-gray-700 dark:text-gray-300">
-                                        <div>Enable notifications</div>
-
-                                    </label>
-                                </div>
-                            </div>
-                        </li>
-
-
-                    </x-filter-dropdown>
-
-                    <x-filter-dropdown action="Difficulty">
-
-                        <li>
-                            <div class="flex items-center">
-                                <input id="checkbox-item-1" type="checkbox" value=""
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                <label for="checkbox-item-1"
-                                    class="ms-2 text-sm font-medium text-gray-600 dark:text-gray-300">Easy</label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="flex items-center">
-                                <input checked id="checkbox-item-2" type="checkbox" value=""
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                <label for="checkbox-item-2"
-                                    class="ms-2 text-sm font-medium text-gray-600 dark:text-gray-300">Medium</label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="flex items-center">
-                                <input id="checkbox-item-3" type="checkbox" value=""
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                <label for="checkbox-item-3"
-                                    class="ms-2 text-sm font-medium text-gray-600 dark:text-gray-300">Hard</label>
-                            </div>
-                        </li>
-
-                    </x-filter-dropdown>
-
-                    <x-filter-dropdown action="Status">
-                        <li>Todo</li>
-                        <li>Solved</li>
-                        <li>Attempted</li>
-                    </x-filter-dropdown>
-
-
-                    <x-filter-dropdown action="Tags 2">
-
-                    </x-filter-dropdown>
-
-
-                    <div class="relative w-min[250px] flex items-center">
-                        <input type="text"
-                            class="appearance-none relative border-none rounded-md bg-gray-100 dark:bg-gray-700 dark:text-gray-300 dark:focus:bg-gray-600 focus:bg-gray-200 focus:outline-none w-full h-auto pl-9 py-1.5 placeholder:text-gray-400 placeholder:text-sm placeholder:font-thin"
-                            placeholder="Search Questions">
-                        <span class="absolute left-4 text-gray-400 dark:text-gray-500 ">
-                            <i class="fa fa-search"></i>
-                        </span>
-                    </div>
-
-
-                    <div class="">
-
-                        <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots"
-                            class="inline-flex items-center text-md  font-medium text-center text-gray-900 bg-gray-100 hover:bg-gray-200 p-3 rounded-lg focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50  dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-600"
-                            type="button">
-                            <i class="fa fa-gear"></i>
-                        </button>
-
-                        <!-- Dropdown menu -->
-                        <div id="dropdownDots"
-                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                aria-labelledby="dropdownMenuIconButton">
-
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show topic tags</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Premium questions</a>
-                                </li>
-                            </ul>
-
-                        </div>
-
-
-                    </div>
-
-                    <div class="flex gap-4">
-                        <div class="px-3 py-1 self-center rounded-full bg-green-600 text-gray-200 text-xl"><i class="fa fa-close"></i></div>
-
-                    </div>
-
-                </div>
-
-                <div class="flex flex-wrap gap-2">
-                    <div
-                        class="flex gap-4 justify-between items-center bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-lg text-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300">
-                        <span class="text-sm">Hard problem</span>
-                        <span
-                            class="cursor-pointer text-sm rounded-full px-1 py-0 bg-gray-300 text-gray-50 dark:bg-gray-600 dark:text-gray-800">
-                            <i class="fa fa-close"></i>
-                        </span>
-                    </div>
-
-                    <div
-                        class="flex gap-4 justify-between items-center bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-lg text-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300">
-                        <span class="text-sm">Hard problem</span>
-                        <span
-                            class="cursor-pointer text-sm rounded-full px-1 py-0 bg-gray-300 text-gray-50 dark:bg-gray-600 dark:text-gray-800">
-                            <i class="fa fa-close"></i>
-                        </span>
-                    </div>
-
-                </div>
-
-            </div>
+            @include('problems.filter')
 
 
 
             {{-- Table List --}}
 
             <div>
-
-
                 <div class="relative overflow-x-auto shadow-sm sm:rounded-lg">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead
@@ -281,7 +147,6 @@
                     </table>
                 </div>
 
-
                 <div class="flex justify-between items-center mt-3">
                     <x-filter-dropdown action="20/Page">
                         <li>20 / Page</li>
@@ -338,65 +203,14 @@
                         </ul>
                     </nav>
                 </div>
-
-            </div>
-
-        </div>
-
-        <div class="space-y-4">
-
-
-            <div class="dark:bg-gray-700 rounded-md px-4 py-2 shadow-md">
-
-                <div class="flex justify-between items-center mb-4">
-                    <h4 class="text-md text-semibold text-gray-600 dark:text-gray-300">Tranding Companies</h4>
-                    <div class="flex gap-2 text-gray-600 dark:text-gray-300">
-                        <span
-                            class="size-8 flex items-center justify-center rounded-md shadow-sm bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 cursor-pointer"><i
-                                class="fa fa-angle-left"></i></span>
-                        <span
-                            class="size-8 flex items-center justify-center rounded-md shadow-sm bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 cursor-pointer"><i
-                                class="fa fa-angle-right"></i></span>
-                    </div>
-                </div>
-
-
-                <div class="relative w-full flex items-center mb-4">
-                    <input type="text"
-                        class="appearance-none relative border-none rounded-md bg-gray-100 dark:bg-gray-600 dark:text-gray-300 focus:bg-gray-200 focus:outline-none w-full h-auto pl-9 py-1.5"
-                        placeholder="Search for a company">
-                    <span class="absolute left-4 text-gray-400 dark:text-gray-500 ">
-                        <i class="fa fa-search"></i>
-                    </span>
-                </div>
-
-
-
-                <div class="flex flex-wrap gap-2">
-                    <div
-                        class="text-nowrap text-xs space-x-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 px-2 py-1 rounded-lg cursor-pointer">
-                        <span class="dark:text-gray-300">Google</span>
-                        <span class="text-xs font-medium px-2 bg-yellow-400 text-gray-800 rounded-full">50</span>
-                    </div>
-
-                    <div
-                        class="text-nowrap text-xs space-x-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 px-2 py-1 rounded-lg cursor-pointer">
-                        <span class="dark:text-gray-300">IBM</span>
-                        <span class="text-xs font-medium px-2 bg-yellow-400 text-gray-800 rounded-full">50</span>
-                    </div>
-
-                    <div
-                        class="text-nowrap text-xs space-x-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 px-2 py-1 rounded-lg cursor-pointer">
-                        <span class="dark:text-gray-300">Meta</span>
-                        <span class="text-xs font-medium px-2 bg-yellow-400 text-gray-800 rounded-full">50</span>
-                    </div>
-
-
-                </div>
-
-
             </div>
         </div>
+
+
+
+
+
+       @include('problems.sidebar')
 
     </div>
 </x-app-layout>
