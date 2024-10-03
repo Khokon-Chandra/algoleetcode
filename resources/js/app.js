@@ -1,45 +1,37 @@
+import '../css/app.css';
 import './bootstrap';
 
-import jQuery from 'jquery';
-
-import 'flowbite';
-
-import.meta.glob([
-    '../images/**'
-])
-
-
-window.$ = jQuery;
-
-
+import { createInertiaApp } from '@inertiajs/vue3';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { createApp, h } from 'vue';
+import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
 /**
- * Navigation bar 
+ * Font Awesome Icon
  */
-
-$('#hamBarButton').click(function () {
-    $('#mobileMenu').removeClass('-z-20 opacity-0').addClass('z-20 opacity-1')
-})
-
-$('#closeMobileNav').click(function () {
-    $('#mobileMenu').removeClass('z-20 opacity-1').addClass('-z-20 opacity-0')
-})
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faPhone, faBars, faClose, faDatabase, faTerminal, faGlobe, faArchive, faAngleDown, faCheck, faCog, faSearch, faLock, faCheckCircle, faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+library.add(faBars, faClose, faDatabase, faTerminal, faGlobe, faArchive, faAngleDown, faCheck, faCog, faSearch, faLock, faCheckCircle, faAngleLeft, faAngleRight)
 
 
-/**
- * Problems page --> filter option difficulty
- */
-// JavaScript to ensure only one checkbox is selected at a time
-const checkboxes = document.querySelectorAll('.single-checkbox');
+const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
-checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', function () {
-        if (this.checked) {
-            checkboxes.forEach(other => {
-                if (other !== this) {
-                    other.checked = false;
-                }
-            });
-        }
-    });
+createInertiaApp({
+    title: (title) => `${title} ${appName}`,
+    resolve: (name) =>
+        resolvePageComponent(
+            `./Pages/${name}.vue`,
+            import.meta.glob('./Pages/**/*.vue'),
+        ),
+    setup({ el, App, props, plugin }) {
+        return createApp({ render: () => h(App, props) })
+            .component("font-awesome-icon", FontAwesomeIcon)
+            .use(plugin)
+            .use(ZiggyVue)
+            .mount(el);
+    },
+    progress: {
+        color: '#4B5563',
+    },
 });
