@@ -9,7 +9,7 @@ import Avatar from '@/images/avatar.png'
 
     <div class="h-screen grid grid-rows-[auto_1fr]">
         <header class="px-6 sm:px-6 lg:px-4 bg-gray-200 dark:bg-gray-900">
-            <nav class="flex justify-between items-center py-1">
+            <nav class="flex justify-between items-center py-2">
                 <ul class="flex space-x-0.5 group">
                     <li class="px-3 py-1 ">
                         <Link :href="route('problems.index')">
@@ -19,7 +19,7 @@ import Avatar from '@/images/avatar.png'
                     <li
                         class="px-3 py-1 group-hover:bg-gray-100 hover:bg-gray-200 dark:group-hover:bg-gray-700 flex items-center gap-1 rounded-l-md">
                         <font-awesome-icon class="text-gray-500 dark:text-gray-400 " icon="indent" />
-                        <span class="text-md font-semibold dark:text-gray-300">Problem List</span>
+                        <span class="text-md font-semibold dark:text-gray-300 text-nowrap">Problem List</span>
                     </li>
                     <li
                         class="px-3 py-1 group-hover:bg-gray-100 hover:bg-gray-200 text-gray-500 font-thin dark:group-hover:bg-gray-700">
