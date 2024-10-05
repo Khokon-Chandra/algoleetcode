@@ -15,11 +15,18 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/problems',function(Request $request){
-    return Inertia::render('Problem/Index',[
+Route::get('/problems', function (Request $request) {
+    return Inertia::render('Problem/Index', [
         'filters' => $request->all()
     ]);
 })->name('problems.index');
+
+Route::get('/problems/{slug}/description', function (Request $request) {
+    return Inertia::render('Problem/Show', [
+        'filters' => $request->all()
+    ]);
+})->name('problems.show');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -31,4 +38,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
