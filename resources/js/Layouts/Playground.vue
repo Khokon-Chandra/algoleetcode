@@ -36,13 +36,13 @@ import Avatar from '@/images/avatar.png'
                 </ul>
                 <ul class="flex space-x-0.5">
                     <li
-                        class="px-3 py-1 dark:bg-gray-700 dark:bg-opacity-50 dark:hover:bg-gray-600 flex items-center gap-2 rounded-l-md">
+                        class="px-3 py-1 dark:bg-gray-700 dark:bg-opacity-50 dark:hover:bg-gray-600 flex items-center gap-2 rounded-l-md cursor-pointer">
                         <font-awesome-icon class="text-gray-600 dark:text-gray-400 text-xl" icon="caret-right" />
                         <span class="text-md font-semibold dark:text-gray-300">Run</span>
                     </li>
 
                     <li
-                        class="px-3 py-1 dark:bg-gray-700 dark:bg-opacity-50 dark:hover:bg-gray-600 flex items-center gap-2">
+                        class="px-3 py-1 dark:bg-gray-700 dark:bg-opacity-50 dark:hover:bg-gray-600 flex items-center gap-2 cursor-pointer">
                         <font-awesome-icon class="text-green-600 text-lg" icon="cloud-arrow-up" />
                         <span class="text-md font-semibold text-green-600">Submit</span>
                     </li>
