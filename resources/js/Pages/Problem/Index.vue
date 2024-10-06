@@ -182,7 +182,7 @@ const props = defineProps({
                     </div>
 
                     <div class="flex justify-between items-center mt-3">
-                        <select class="border-none rounded-md dark:bg-neutral-900 dark:text-neutral-300 py-1.5"
+                        <select class="border-none rounded-md dark:bg-neutral-800 dark:hover:bg-neutral-700 focus:ring-0 dark:text-neutral-300 py-1.5"
                             action="20/Page">
                             <option selected value="20">20 / Page</option>
                             <option value="50">50 / Page</option>
@@ -248,18 +248,18 @@ const props = defineProps({
             <div class="space-y-4">
 
 
-                <div class="dark:bg-neutral-900 rounded-md px-4 py-2 shadow-md">
+                <div class="dark:bg-neutral-800 rounded-md px-4 py-2 shadow-md">
 
                     <div class="flex justify-between items-center mb-4">
                         <h4 class="text-md text-semibold text-neutral-600 dark:text-neutral-300">Tranding Companies</h4>
                         <div class="flex gap-2 text-neutral-600 dark:text-neutral-300">
                             <span
-                                class="size-8 flex items-center justify-center rounded-md shadow-sm bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-500 cursor-pointer">
+                                class="size-8 flex items-center justify-center rounded-md shadow-sm bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700/40 dark:hover:bg-neutral-700 cursor-pointer">
                                 <font-awesome-icon icon="angle-left" />
                             </span>
 
                             <span
-                                class="size-8 flex items-center justify-center rounded-md shadow-sm bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-500 cursor-pointer">
+                                class="size-8 flex items-center justify-center rounded-md shadow-sm bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700/40 dark:hover:bg-neutral-700 cursor-pointer">
                                 <font-awesome-icon icon="angle-right" />
                             </span>
                         </div>
@@ -268,7 +268,7 @@ const props = defineProps({
 
                     <div class="relative w-full flex items-center mb-4">
                         <input type="text"
-                            class="appearance-none relative border-none rounded-md bg-neutral-100 dark:bg-neutral-900 dark:text-neutral-300 focus:bg-neutral-200 dark:focus:bg-neutral-500 focus:outline-none w-full h-auto pl-9 py-1.5"
+                            class="appearance-none relative border-none rounded-md bg-neutral-100 dark:bg-neutral-700/40 dark:text-neutral-300 focus:bg-neutral-200 focus:ring-0 dark:focus:bg-neutral-700 focus:outline-none w-full h-auto pl-9 py-1.5"
                             placeholder="Search for a company">
                         <span class="absolute left-4 text-neutral-400 dark:text-neutral-400 ">
                             <font-awesome-icon icon="search" />
@@ -279,19 +279,19 @@ const props = defineProps({
 
                     <div class="flex flex-wrap gap-2">
                         <div
-                            class="text-nowrap text-xs space-x-3 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-500 px-2 py-1 rounded-lg cursor-pointer">
+                            class="text-nowrap text-xs space-x-3 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700/50 dark:hover:bg-neutral-600/50 px-2 py-1 rounded-lg cursor-pointer">
                             <span class="dark:text-neutral-300">Google</span>
                             <span class="text-xs font-medium px-2 bg-yellow-400 text-neutral-800 rounded-full">50</span>
                         </div>
 
                         <div
-                            class="text-nowrap text-xs space-x-3 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-500 px-2 py-1 rounded-lg cursor-pointer">
+                            class="text-nowrap text-xs space-x-3 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700/50 dark:hover:bg-neutral-600/50 px-2 py-1 rounded-lg cursor-pointer">
                             <span class="dark:text-neutral-300">IBM</span>
                             <span class="text-xs font-medium px-2 bg-yellow-400 text-neutral-800 rounded-full">50</span>
                         </div>
 
                         <div
-                            class="text-nowrap text-xs space-x-3 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-500 px-2 py-1 rounded-lg cursor-pointer">
+                            class="text-nowrap text-xs space-x-3 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700/50 dark:hover:bg-neutral-600/50 px-2 py-1 rounded-lg cursor-pointer">
                             <span class="dark:text-neutral-300">Meta</span>
                             <span class="text-xs font-medium px-2 bg-yellow-400 text-neutral-800 rounded-full">50</span>
                         </div>
