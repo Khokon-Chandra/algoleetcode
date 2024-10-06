@@ -78,7 +78,7 @@ const open = ref(false);
                 @click="open = !hideContent"
             >
                 <div
-                    class="rounded-md ring-1 ring-black ring-opacity-5  dark:bg-gray-700"
+                    class="rounded-md ring-1 ring-black ring-opacity-5  dark:bg-neutral-800"
                     :class="contentClasses"
                 >
                     <slot name="content" />

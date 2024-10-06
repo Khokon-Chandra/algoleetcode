@@ -21,20 +21,20 @@ const toggleNavbar = () => {
                 <AppLogo></AppLogo>
             </li>
             <li class="hidden md:flex">
-                <Link class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-gray-100 py-3"
+                <Link class="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-neutral-100 py-3"
                     href="javascript:void(0)">Explore</Link>
             </li>
             <li class="hidden md:flex">
                 <Link :class="route().current('problems.index') ? 'active' : ''"
-                    class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-gray-100 py-3"
+                    class="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-neutral-100 py-3"
                     :href="route('problems.index')">Problems</Link>
             </li>
             <li class="hidden md:flex">
-                <Link class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-gray-100 py-3" href="#">
+                <Link class="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-neutral-100 py-3" href="#">
                 Contest</Link>
             </li>
             <li class="hidden md:flex">
-                <Link class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-gray-100 py-3" href="#">
+                <Link class="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-neutral-100 py-3" href="#">
                 Discuss</Link>
             </li>
         </ul>
@@ -43,7 +43,7 @@ const toggleNavbar = () => {
         <ul v-if="$page.props.auth.user" class="hidden md:flex items-center gap-4">
             <li>
                 <div
-                    class="size-8 flex items-center justify-center relative cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600 rounded-md dark:text-gray-300">
+                    class="size-8 flex items-center justify-center relative cursor-pointer hover:bg-neutral-300 dark:hover:bg-neutral-600 rounded-md dark:text-neutral-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"
                         fill="currentColor" class="hover:text-text-primary dark:hover:text-text-primary ">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -53,7 +53,7 @@ const toggleNavbar = () => {
                 </div>
             </li>
             <li>
-                <a class="size-8 flex items-center justify-center hover:bg-gray-300 dark:hover:bg-gray-600 rounded-md dark:text-gray-300"
+                <a class="size-8 flex items-center justify-center hover:bg-neutral-300 dark:hover:bg-neutral-600 rounded-md dark:text-neutral-300"
                     href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="1em" height="1em"
                         fill="currentColor"
                         class="h-[20px] w-[20px] hover:text-text-primary dark:hover:text-text-primary text-text-secondary dark:text-text-secondary">
@@ -76,14 +76,14 @@ const toggleNavbar = () => {
 
                         <div class="w-32">
                             <DropdownLink
-                                class="dark:text-gray-300 dark:hover:bg-gray-600 flex justify-between items-center gap-2"
+                                class="dark:text-neutral-300 dark:hover:bg-neutral-600 flex justify-between items-center gap-2"
                                 href="">
                                 <span class="text-nowrap">Profile</span>
                                 <font-awesome-icon class="text-green-500" icon="user" />
                             </DropdownLink>
 
                             <DropdownLink
-                                class="dark:text-gray-300 dark:hover:bg-gray-600 flex justify-between items-center gap-2 text-nowrap"
+                                class="dark:text-neutral-300 dark:hover:bg-neutral-600 flex justify-between items-center gap-2 text-nowrap"
                                 :href="route('logout')" method="post" as="button">
                                 Log Out
                             </DropdownLink>
@@ -98,11 +98,11 @@ const toggleNavbar = () => {
 
         <div v-else class="gap-4 hidden md:flex items-center">
             <Link :href="route('register')"
-                class="text-gray-700 text-md hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Register
+                class="text-neutral-700 text-md hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100">Register
             </Link>
-            <span class="text-gray-700 text-sm font-thin dark:text-gray-300 ">or</span>
+            <span class="text-neutral-700 text-sm font-thin dark:text-neutral-300 ">or</span>
             <Link :href="route('login')"
-                class="text-gray-700 text-md hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Sign
+                class="text-neutral-700 text-md hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100">Sign
             in</Link>
 
         </div>
@@ -111,7 +111,7 @@ const toggleNavbar = () => {
 
         <ul class="flex md:hidden items-center justify-center">
             <li @click="toggleNavbar"
-                class="text-xl text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 py-3 cursor-pointer">
+                class="text-xl text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 py-3 cursor-pointer">
                 <font-awesome-icon icon="bars" />
             </li>
         </ul>
@@ -120,28 +120,28 @@ const toggleNavbar = () => {
 
 
     <nav v-if="isNavbarVisible"
-        class="transition duration-300 ease-in-out md:hidden fixed top-0 left-0 w-full h-full bg-gray-100 dark:bg-gray-800">
+        class="transition duration-300 ease-in-out md:hidden fixed top-0 left-0 w-full h-full bg-neutral-100 dark:bg-neutral-800">
 
-        <div class="border-b border-gray-300 dark:border-gray-600 flex justify-between items-center px-6 py-4">
+        <div class="border-b border-neutral-300 dark:border-neutral-600 flex justify-between items-center px-6 py-4">
 
 
             <div v-if="!$page.props.auth.user" class="space-x-4">
                 <Link
-                    class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 cursor-pointer"
+                    class="text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 cursor-pointer"
                     :href="route('register')">Register</Link>
                 <Link
-                    class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 cursor-pointer"
+                    class="text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 cursor-pointer"
                     :href="route('login')">Sign in</Link>
             </div>
 
             <div v-else class="flex items-center gap-3">
-                <div class="size-8 bg-gray-200 border-2 border-indigo-500 rounded-full"></div>
-                <h4 class="text-gray-600 text-md font-medium dark:text-gray-300">Username</h4>
+                <div class="size-8 bg-neutral-200 border-2 border-indigo-500 rounded-full"></div>
+                <h4 class="text-neutral-600 text-md font-medium dark:text-neutral-300">Username</h4>
             </div>
 
 
             <span @click="toggleNavbar"
-                class="text-gray-600 dark:text-gray-300 text-xl cursor-pointer hover:text-gray-900 dark:hover:text-gray-100">
+                class="text-neutral-600 dark:text-neutral-300 text-xl cursor-pointer hover:text-neutral-900 dark:hover:text-neutral-100">
                 <font-awesome-icon icon="close" />
             </span>
 
@@ -149,7 +149,7 @@ const toggleNavbar = () => {
 
         <ul class="flex flex-col gap-1 p-6">
             <li>
-                <a class="text-gray-600 dark:text-gray-300 flex gap-4 items-center p-2 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800"
+                <a class="text-neutral-600 dark:text-neutral-300 flex gap-4 items-center p-2 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800"
                     href="javascript:void(0)">
                     <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"
                             fill="currentColor">
@@ -164,7 +164,7 @@ const toggleNavbar = () => {
                 </a>
             </li>
             <li>
-                <a class="text-gray-600 dark:text-gray-300 flex gap-4 items-center p-2 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800"
+                <a class="text-neutral-600 dark:text-neutral-300 flex gap-4 items-center p-2 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800"
                     href="javascript:void(0)">
                     <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"
                             fill="currentColor">
@@ -176,7 +176,7 @@ const toggleNavbar = () => {
                 </a>
             </li>
             <li>
-                <a class="text-gray-600 dark:text-gray-300 flex gap-4 items-center p-2 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800"
+                <a class="text-neutral-600 dark:text-neutral-300 flex gap-4 items-center p-2 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800"
                     href="javascript:void(0)">
                     <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"
                             fill="currentColor">
@@ -188,7 +188,7 @@ const toggleNavbar = () => {
                 </a>
             </li>
             <li>
-                <a class="text-gray-600 dark:text-gray-300 flex gap-4 items-center p-2 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800"
+                <a class="text-neutral-600 dark:text-neutral-300 flex gap-4 items-center p-2 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800"
                     href="javascript:void(0)">
                     <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"
                             fill="currentColor">
@@ -203,7 +203,7 @@ const toggleNavbar = () => {
 
             <li v-if="$page.props.auth.user">
                 <form method="POST" action="{{ route('logout') }}"
-                    class="text-red-600 hover:text-red-800  p-2 border-b border-gray-200 dark:border-gray-700  dark:bg-gray-800">
+                    class="text-red-600 hover:text-red-800  p-2 border-b border-neutral-200 dark:border-neutral-700  dark:bg-neutral-800">
                     <input type="hidden" name="_token" :value="$page.props.csrf_token">
                     <Link :href="route('logout')" method="post" as="button"
                         class="w-full flex gap-4 items-center">
