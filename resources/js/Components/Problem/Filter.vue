@@ -27,7 +27,7 @@ const search = () => {
                     <template #trigger>
                         <span class="inline-flex rounded-md w-full">
                             <button type="button"
-                                class="w-full inline-flex items-center justify-between gap-2 rounded-md border border-transparent bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300 dark:hover:text-gray-100 px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
+                                class="w-full inline-flex items-center justify-between gap-2 rounded-md border border-transparent bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-100 px-3 py-2 text-sm font-medium leading-4 text-neutral-500 transition duration-150 ease-in-out hover:text-neutral-700 focus:outline-none">
                                 Lists
                                 <font-awesome-icon icon="angle-down" />
                             </button>
@@ -37,7 +37,7 @@ const search = () => {
                     <template #content>
 
                         <DropdownLink
-                            class="dark:text-gray-300 dark:hover:bg-gray-600 flex justify-between items-center gap-2"
+                            class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
                             href="">
                             <span class="text-nowrap">LeetCode curated Algo 170</span>
                             <font-awesome-icon class="text-green-500" icon="check" />
@@ -55,7 +55,7 @@ const search = () => {
                     <template #trigger>
                         <span class="inline-flex rounded-md w-full">
                             <button type="button"
-                                class="w-full inline-flex items-center justify-between gap-2 rounded-md border border-transparent bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300 dark:hover:text-gray-100 px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
+                                class="w-full inline-flex items-center justify-between gap-2 rounded-md border border-transparent bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-100 px-3 py-2 text-sm font-medium leading-4 text-neutral-500 transition duration-150 ease-in-out hover:text-neutral-700 focus:outline-none">
                                 Difficulty
                                 <font-awesome-icon icon="angle-down" />
                             </button>
@@ -65,21 +65,21 @@ const search = () => {
                     <template #content>
 
                         <DropdownLink
-                            class="dark:text-gray-300 dark:hover:bg-gray-600 flex justify-between items-center gap-2"
+                            class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
                             href="">
                             <span class="text-nowrap">Easy</span>
                             <font-awesome-icon class="text-green-500" icon="check" />
                         </DropdownLink>
 
                         <DropdownLink
-                            class="dark:text-gray-300 dark:hover:bg-gray-600 flex justify-between items-center gap-2"
+                            class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
                             href="">
                             <span class="text-nowrap">Medium</span>
                             <font-awesome-icon class="text-green-500" icon="check" />
                         </DropdownLink>
 
                         <DropdownLink
-                            class="dark:text-gray-300 dark:hover:bg-gray-600 flex justify-between items-center gap-2"
+                            class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
                             href="">
                             <span class="text-nowrap">Hard</span>
                             <font-awesome-icon class="text-green-500" icon="check" />
@@ -97,7 +97,7 @@ const search = () => {
                     <template #trigger>
                         <span class="inline-flex rounded-md w-full">
                             <button type="button"
-                                class="w-full inline-flex items-center justify-between gap-2 rounded-md border border-transparent bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300 dark:hover:text-gray-100 px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
+                                class="w-full inline-flex items-center justify-between gap-2 rounded-md border border-transparent bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-100 px-3 py-2 text-sm font-medium leading-4 text-neutral-500 transition duration-150 ease-in-out hover:text-neutral-700 focus:outline-none">
                                 Status
                                 <font-awesome-icon icon="angle-down" />
                             </button>
@@ -107,7 +107,7 @@ const search = () => {
                     <template #content>
 
                         <DropdownLink
-                            class="dark:text-gray-300 dark:hover:bg-gray-600 flex justify-between items-center gap-2"
+                            class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
                             href="">
                             <span class="text-nowrap">Todo</span>
                             <font-awesome-icon class="text-green-500" icon="check" />
@@ -115,14 +115,14 @@ const search = () => {
 
 
                         <DropdownLink
-                            class="dark:text-gray-300 dark:hover:bg-gray-600 flex justify-between items-center gap-2"
+                            class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
                             href="">
                             <span class="text-nowrap">Solved</span>
                             <font-awesome-icon class="text-green-500" icon="check" />
                         </DropdownLink>
 
                         <DropdownLink
-                            class="dark:text-gray-300 dark:hover:bg-gray-600 flex justify-between items-center gap-2"
+                            class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
                             href="">
                             <span class="text-nowrap">Attempted</span>
                             <font-awesome-icon class="text-green-500" icon="check" />
@@ -141,7 +141,7 @@ const search = () => {
                     <template #trigger>
                         <span class="inline-flex rounded-md w-full">
                             <button type="button"
-                                class="w-full inline-flex items-center justify-between gap-2 rounded-md border border-transparent bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300 dark:hover:text-gray-100 px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
+                                class="w-full inline-flex items-center justify-between gap-2 rounded-md border border-transparent bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-100 px-3 py-2 text-sm font-medium leading-4 text-neutral-500 transition duration-150 ease-in-out hover:text-neutral-700 focus:outline-none">
                                 Tags
                                 <font-awesome-icon icon="angle-down" />
                             </button>
@@ -154,9 +154,9 @@ const search = () => {
 
                             <div class="relative w-min[250px] flex items-center">
                                 <input type="text"
-                                    class="appearance-none relative border-none rounded-md bg-gray-100 dark:bg-gray-600 dark:text-gray-300 dark:focus:bg-gray-500 focus:bg-gray-200 focus:outline-none w-full h-auto pl-9 py-1.5 placeholder:text-gray-400 placeholder:text-sm placeholder:font-thin"
+                                    class="relative border-none rounded-md bg-neutral-100 dark:bg-neutral-700/20 dark:text-neutral-300 dark:focus:bg-neutral-700/50 focus:bg-neutral-200 focus:outline-none focus:ring-0 w-full h-auto pl-9 py-1.5 placeholder:text-neutral-500 placeholder:text-sm placeholder:font-thin"
                                     placeholder="filter topics">
-                                <span class="absolute left-4 text-gray-400 dark:text-gray-300 ">
+                                <span class="absolute left-4 text-neutral-400 dark:text-neutral-300 ">
                                     <font-awesome-icon icon="search" />
                                 </span>
                             </div>
@@ -164,14 +164,14 @@ const search = () => {
 
                             <div class="flex flex-wrap gap-2">
                                 <a href="javascript:void(0)"
-                                    class="cursor-pointer text-xs font-thin text-gray-600 bg-gray-200 dark:text-gray-200 dark:bg-gray-600 px-2 py-1 rounded-lg">Array</a>
+                                    class="cursor-pointer text-xs font-thin text-neutral-600 bg-neutral-200 dark:text-neutral-200 dark:bg-neutral-700 px-2 py-1 rounded-lg">Array</a>
                                 <a href="javascript:void(0)"
-                                    class="cursor-pointer text-xs font-thin text-gray-600 bg-gray-200 dark:text-gray-200 dark:bg-gray-600 px-2 py-1 rounded-lg">String</a>
+                                    class="cursor-pointer text-xs font-thin text-neutral-600 bg-neutral-200 dark:text-neutral-200 dark:bg-neutral-700 px-2 py-1 rounded-lg">String</a>
                                 <a href="javascript:void(0)"
-                                    class="cursor-pointer text-xs font-thin text-gray-600 bg-gray-200 dark:text-gray-200 dark:bg-gray-600 px-2 py-1 rounded-lg">Hash
+                                    class="cursor-pointer text-xs font-thin text-neutral-600 bg-neutral-200 dark:text-neutral-200 dark:bg-neutral-700 px-2 py-1 rounded-lg">Hash
                                     Table</a>
                                 <a href="javascript:void(0)"
-                                    class="cursor-pointer text-xs font-thin text-gray-600 bg-gray-200 dark:text-gray-200 dark:bg-gray-600 px-2 py-1 rounded-lg">Database</a>
+                                    class="cursor-pointer text-xs font-thin text-neutral-600 bg-neutral-200 dark:text-neutral-200 dark:bg-neutral-700 px-2 py-1 rounded-lg">Database</a>
                             </div>
 
                         </div>
@@ -189,9 +189,9 @@ const search = () => {
                 <div class="flex-1">
                     <div class="w-full relative flex items-center">
                         <input type="text"
-                            class="block w-full relative border-none rounded-md bg-gray-100 dark:bg-gray-700 dark:text-gray-300 dark:focus:bg-gray-600 focus:bg-gray-200 focus:outline-none h-auto pl-9 py-1.5 placeholder:text-gray-400 placeholder:text-sm placeholder:font-thin"
+                            class="block w-full relative border-none rounded-md bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-300 dark:focus:bg-neutral-600 focus:bg-neutral-200 focus:outline-none h-auto pl-9 py-1.5 placeholder:text-neutral-400 placeholder:text-sm placeholder:font-thin"
                             placeholder="Search Questions">
-                        <span class="absolute left-4 text-gray-400 dark:text-gray-500 ">
+                        <span class="absolute left-4 text-neutral-400 dark:text-neutral-500 ">
                             <font-awesome-icon icon="search" />
                         </span>
                     </div>
@@ -204,7 +204,7 @@ const search = () => {
                         <template #trigger>
                             <span class="inline-flex rounded-md">
                                 <button type="button"
-                                    class="text-lg inline-flex items-center gap-2 rounded-md border border-transparent bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300 dark:hover:text-gray-100 px-3 py-2 font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
+                                    class="text-lg inline-flex items-center gap-2 rounded-md border border-transparent bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-100 px-3 py-2 font-medium leading-4 text-neutral-500 transition duration-150 ease-in-out hover:text-neutral-700 focus:outline-none">
                                     <font-awesome-icon icon="cog" />
                                 </button>
                             </span>
@@ -213,7 +213,7 @@ const search = () => {
                         <template #content>
 
                             <DropdownLink
-                                class="dark:text-gray-300 dark:hover:bg-gray-600 flex justify-between items-center gap-2"
+                                class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
                                 href="">
                                 <span class="text-nowrap">LeetCode curated Algo 170</span>
                                 <font-awesome-icon class="text-green-500" icon="check" />
@@ -246,19 +246,19 @@ const search = () => {
 
         <div class="flex flex-wrap gap-2">
             <div
-                class="flex gap-4 justify-between items-center bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-lg text-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300">
+                class="flex gap-4 justify-between items-center bg-neutral-100 hover:bg-neutral-200 px-2 py-1 rounded-lg text-neutral-500 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300">
                 <span class="text-xs">Hard problem</span>
                 <span
-                    class="cursor-pointer text-sm rounded-full px-1 py-0 bg-gray-300 text-gray-50 dark:bg-gray-600 dark:text-gray-800">
+                    class="cursor-pointer text-sm rounded-full px-1 py-0 bg-neutral-300 text-neutral-50 dark:bg-neutral-600 dark:text-neutral-800">
                     <font-awesome-icon icon="close" />
                 </span>
             </div>
 
             <div
-                class="flex gap-4 justify-between items-center bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-lg text-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300">
+                class="flex gap-4 justify-between items-center bg-neutral-100 hover:bg-neutral-200 px-2 py-1 rounded-lg text-neutral-500 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300">
                 <span class="text-xs">Hard problem</span>
                 <span
-                    class="cursor-pointer text-sm rounded-full px-1 py-0 bg-gray-300 text-gray-50 dark:bg-gray-600 dark:text-gray-800">
+                    class="cursor-pointer text-sm rounded-full px-1 py-0 bg-neutral-300 text-neutral-50 dark:bg-neutral-600 dark:text-neutral-800">
                     <font-awesome-icon icon="close" />
                 </span>
             </div>

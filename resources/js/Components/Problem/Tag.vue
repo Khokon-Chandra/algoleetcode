@@ -10,10 +10,10 @@ defineProps({
 <template>
     
 <Link href="#" class="text-nowrap group space-x-1">
-    <span class="text-sm hover:text-blue-500 dark:text-gray-300 group-hover:text-blue-500">
+    <span class="text-sm hover:text-blue-500 dark:text-neutral-300 group-hover:text-blue-500">
         <slot />
     </span>
     <span
-        class="bg-gray-200 dark:bg-gray-700 group-hover:text-blue-500 group-hover:bg-blue-100 dark:group-hover:bg-gray-700 rounded-lg px-1 py-0 text-sm text-gray-500 dark:text-gray-400">{{ count }}</span>
+        class="bg-neutral-200 dark:bg-neutral-800 group-hover:text-blue-500 group-hover:bg-blue-100 dark:group-hover:bg-neutral-700 rounded-lg px-1 py-0 text-sm font-thin text-neutral-500 dark:text-neutral-400">{{ count }}</span>
 </Link>
 </template>

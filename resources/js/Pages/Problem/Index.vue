@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { usePage, Head } from '@inertiajs/vue3'
+import { usePage, Head, Link } from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import StudyPlanCard from '@/Components/Problem/StudyPlanCard.vue'
 import Tag from '@/Components/Problem/Tag.vue'
@@ -55,7 +55,7 @@ const props = defineProps({
                 <div class="space-y-3">
 
                     <div class="flex justify-between items-center">
-                        <h1 class="text-xl font-semibold text-gray-700 dark:text-gray-300">Study Plan</h1>
+                        <h1 class="text-xl font-semibold text-neutral-700 dark:text-neutral-300">Study Plan</h1>
                         <a href="#" class="text-blue-700 text-md">See All</a>
                     </div>
 
@@ -92,7 +92,7 @@ const props = defineProps({
                 <div class="flex gap-4 overflow-x-hidden">
 
                     <div
-                        class="cursor-pointer flex items-center gap-3 bg-gray-700 hover:bg-gray-800 rounded-full px-3 py-2 text-gray-200 dark:hover:bg-gray-200 dark:bg-gray-300  dark:text-gray-900">
+                        class="cursor-pointer flex items-center gap-3 bg-neutral-900 hover:bg-neutral-900 rounded-full px-3 py-2 text-neutral-200 dark:hover:bg-neutral-200 dark:bg-neutral-300  dark:text-neutral-900">
                         <div class="">
                             <font-awesome-icon icon="archive" />
                         </div>
@@ -114,9 +114,9 @@ const props = defineProps({
                 <!-- Table List -->
                 <div>
                     <div class="relative overflow-x-auto shadow-sm sm:rounded-lg">
-                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <table class="w-full text-sm text-left rtl:text-right text-neutral-500 dark:text-neutral-400">
                             <thead
-                                class="text-sm font-thin text-gray-500  bg-gray-50 dark:bg-gray-800 dark:text-gray-400 border-b dark:border-gray-600">
+                                class="text-sm font-thin text-neutral-500  bg-neutral-50 dark:bg-neutral-900 dark:text-neutral-400 border-b dark:border-neutral-700">
                                 <tr>
                                     <th scope="col" class=" px-6 py-3">
                                         Status
@@ -140,16 +140,18 @@ const props = defineProps({
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="n in 10"
-                                    class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-50 even:dark:bg-gray-700 border-b dark:border-gray-700">
+                                <tr v-for="n in 10" :key="n"
+                                    class="odd:bg-white odd:dark:bg-neutral-900 even:bg-neutral-50 even:dark:bg-neutral-800 ">
                                     <th scope="row"
-                                        class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        class="px-6 py-3 font-medium text-neutral-900 whitespace-nowrap dark:text-white">
                                         <span class="text-md text-yellow-400">
                                             <font-awesome-icon icon="lock" />
                                         </span>
                                     </th>
-                                    <td class="px-6 py-3 text-nowrap">
-                                        Apple MacBook Pro 17"
+                                    <td>
+                                        <Link :href="route('problems.show','two-sum')" class="px-6 py-3 text-nowrap text-md text-gray-300 font-medium hover:text-blue-500">
+                                        Apple MacBook Pro 17
+                                        </Link>
                                     </td>
                                     <td class="px-6 py-3">
                                         <a href="#" class="text-blue-500 text-md"><svg
@@ -180,7 +182,7 @@ const props = defineProps({
                     </div>
 
                     <div class="flex justify-between items-center mt-3">
-                        <select class="border-none rounded-md dark:bg-gray-700 dark:text-gray-300 py-1.5"
+                        <select class="border-none rounded-md dark:bg-neutral-900 dark:text-neutral-300 py-1.5"
                             action="20/Page">
                             <option selected value="20">20 / Page</option>
                             <option value="50">50 / Page</option>
@@ -193,7 +195,7 @@ const props = defineProps({
                             <ul class="flex items-center gap-2 h-8 text-sm">
                                 <li>
                                     <a href="#"
-                                        class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                        class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-neutral-500 bg-white border border-e-0 border-neutral-300 rounded-s-lg hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white">
                                         <span class="sr-only">Previous</span>
                                         <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
@@ -204,27 +206,27 @@ const props = defineProps({
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                                        class="flex items-center justify-center px-3 h-8 leading-tight text-neutral-500 bg-white border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white">1</a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                                        class="flex items-center justify-center px-3 h-8 leading-tight text-neutral-500 bg-white border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white">2</a>
                                 </li>
                                 <li>
                                     <a href="#" aria-current="page"
-                                        class="z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+                                        class="z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white">3</a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
+                                        class="flex items-center justify-center px-3 h-8 leading-tight text-neutral-500 bg-white border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white">4</a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+                                        class="flex items-center justify-center px-3 h-8 leading-tight text-neutral-500 bg-white border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white">5</a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                        class="flex items-center justify-center px-3 h-8 leading-tight text-neutral-500 bg-white border border-neutral-300 rounded-e-lg hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white">
                                         <span class="sr-only">Next</span>
                                         <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
@@ -246,18 +248,18 @@ const props = defineProps({
             <div class="space-y-4">
 
 
-                <div class="dark:bg-gray-700 rounded-md px-4 py-2 shadow-md">
+                <div class="dark:bg-neutral-900 rounded-md px-4 py-2 shadow-md">
 
                     <div class="flex justify-between items-center mb-4">
-                        <h4 class="text-md text-semibold text-gray-600 dark:text-gray-300">Tranding Companies</h4>
-                        <div class="flex gap-2 text-gray-600 dark:text-gray-300">
+                        <h4 class="text-md text-semibold text-neutral-600 dark:text-neutral-300">Tranding Companies</h4>
+                        <div class="flex gap-2 text-neutral-600 dark:text-neutral-300">
                             <span
-                                class="size-8 flex items-center justify-center rounded-md shadow-sm bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 cursor-pointer">
+                                class="size-8 flex items-center justify-center rounded-md shadow-sm bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-500 cursor-pointer">
                                 <font-awesome-icon icon="angle-left" />
                             </span>
 
                             <span
-                                class="size-8 flex items-center justify-center rounded-md shadow-sm bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 cursor-pointer">
+                                class="size-8 flex items-center justify-center rounded-md shadow-sm bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-500 cursor-pointer">
                                 <font-awesome-icon icon="angle-right" />
                             </span>
                         </div>
@@ -266,9 +268,9 @@ const props = defineProps({
 
                     <div class="relative w-full flex items-center mb-4">
                         <input type="text"
-                            class="appearance-none relative border-none rounded-md bg-gray-100 dark:bg-gray-600 dark:text-gray-300 focus:bg-gray-200 dark:focus:bg-gray-500 focus:outline-none w-full h-auto pl-9 py-1.5"
+                            class="appearance-none relative border-none rounded-md bg-neutral-100 dark:bg-neutral-900 dark:text-neutral-300 focus:bg-neutral-200 dark:focus:bg-neutral-500 focus:outline-none w-full h-auto pl-9 py-1.5"
                             placeholder="Search for a company">
-                        <span class="absolute left-4 text-gray-400 dark:text-gray-400 ">
+                        <span class="absolute left-4 text-neutral-400 dark:text-neutral-400 ">
                             <font-awesome-icon icon="search" />
                         </span>
                     </div>
@@ -277,21 +279,21 @@ const props = defineProps({
 
                     <div class="flex flex-wrap gap-2">
                         <div
-                            class="text-nowrap text-xs space-x-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 px-2 py-1 rounded-lg cursor-pointer">
-                            <span class="dark:text-gray-300">Google</span>
-                            <span class="text-xs font-medium px-2 bg-yellow-400 text-gray-800 rounded-full">50</span>
+                            class="text-nowrap text-xs space-x-3 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-500 px-2 py-1 rounded-lg cursor-pointer">
+                            <span class="dark:text-neutral-300">Google</span>
+                            <span class="text-xs font-medium px-2 bg-yellow-400 text-neutral-800 rounded-full">50</span>
                         </div>
 
                         <div
-                            class="text-nowrap text-xs space-x-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 px-2 py-1 rounded-lg cursor-pointer">
-                            <span class="dark:text-gray-300">IBM</span>
-                            <span class="text-xs font-medium px-2 bg-yellow-400 text-gray-800 rounded-full">50</span>
+                            class="text-nowrap text-xs space-x-3 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-500 px-2 py-1 rounded-lg cursor-pointer">
+                            <span class="dark:text-neutral-300">IBM</span>
+                            <span class="text-xs font-medium px-2 bg-yellow-400 text-neutral-800 rounded-full">50</span>
                         </div>
 
                         <div
-                            class="text-nowrap text-xs space-x-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 px-2 py-1 rounded-lg cursor-pointer">
-                            <span class="dark:text-gray-300">Meta</span>
-                            <span class="text-xs font-medium px-2 bg-yellow-400 text-gray-800 rounded-full">50</span>
+                            class="text-nowrap text-xs space-x-3 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-500 px-2 py-1 rounded-lg cursor-pointer">
+                            <span class="dark:text-neutral-300">Meta</span>
+                            <span class="text-xs font-medium px-2 bg-yellow-400 text-neutral-800 rounded-full">50</span>
                         </div>
 
 
