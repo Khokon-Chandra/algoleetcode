@@ -7,7 +7,7 @@ import Avatar from '@/images/avatar.png'
 
 <template>
 
-    <div class="h-screen grid grid-rows-[auto_1fr]">
+    <div class="h-screen overflow-hidden flex flex-col">
         <header class="px-6 sm:px-6 lg:px-4 bg-neutral-200 dark:bg-neutral-900">
             <nav class="flex justify-between items-center py-2">
                 <ul class="flex space-x-0.5 group">
@@ -64,8 +64,8 @@ import Avatar from '@/images/avatar.png'
             </nav>
         </header>
 
-        <main>
-            <div class="mx-auto px-6 pb-2 sm:px-6 lg:px-4 bg-neutral-200 dark:bg-neutral-950 h-full">
+        <main class="flex-1">
+            <div class="mx-auto px-6 pb-2 sm:px-6 lg:px-4 bg-neutral-200 dark:bg-neutral-950 h-full overflow-y-hidden">
                 <slot />
             </div>
         </main>
