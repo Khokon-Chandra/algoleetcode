@@ -189,7 +189,7 @@ const search = () => {
                 <div class="flex-1">
                     <div class="w-full relative flex items-center">
                         <input type="text"
-                            class="block w-full relative border-none rounded-md bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-300 dark:focus:bg-neutral-600 focus:bg-neutral-200 focus:outline-none h-auto pl-9 py-1.5 placeholder:text-neutral-400 placeholder:text-sm placeholder:font-thin"
+                            class="block w-full relative border-none rounded-md bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-300 dark:focus:bg-neutral-700/50 focus:bg-neutral-200 focus:outline-none focus:ring-0 h-auto pl-9 py-1.5 placeholder:text-neutral-400 placeholder:text-sm placeholder:font-thin"
                             placeholder="Search Questions">
                         <span class="absolute left-4 text-neutral-400 dark:text-neutral-500 ">
                             <font-awesome-icon icon="search" />
