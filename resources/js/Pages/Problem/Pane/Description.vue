@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <div class="h-full grid grid-rows-[auto_1fr] rounded-lg dark:bg-neutral-800 shadow-sm">
+    <div class="h-full grid grid-rows-[auto_1fr] rounded-lg bg-white dark:bg-neutral-800 shadow-sm">
 
         <div class="dark:bg-neutral-700/50 flex p-1">
             <Link

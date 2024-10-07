@@ -149,7 +149,7 @@ const props = defineProps({
                                         </span>
                                     </th>
                                     <td>
-                                        <Link :href="route('problems.show','two-sum')" class="px-6 py-3 text-nowrap text-md text-gray-300 font-medium hover:text-blue-500">
+                                        <Link :href="route('problems.show','two-sum')" class="px-6 py-3 text-nowrap text-md text-neutral-700 dark:text-neutral-300 font-medium hover:text-blue-500">
                                         Apple MacBook Pro 17
                                         </Link>
                                     </td>

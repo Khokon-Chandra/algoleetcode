@@ -1,19 +1,18 @@
 <script setup>
-import { onMounted, onUnmounted, ref, toRefs } from "vue";
+import { onMounted, onUnmounted, ref, toRefs, watchEffect } from "vue";
 import * as monaco from "monaco-editor";
 import { useResizeObserver, useDebounceFn, useLocalStorage } from "@vueuse/core";
 
 
 const props = defineProps({
     type: String,
-    displayName: String,
+    theme: String,
 
 })
 
-const { type, displayName } = toRefs(props);
+const { type, theme } = toRefs(props);
 
 const emit = defineEmits(["code-change"]);
-
 
 // Refs for the container and editor
 const container = ref(null);
@@ -22,12 +21,16 @@ let editor;
 // Use local storage for the code
 const code = useLocalStorage(`save-code-${type.value}`, "");
 
+
+watchEffect(() => {
+    monaco.editor.setTheme(props.theme)
+})
+
 onMounted(() => {
-    console.log(type.value);
-    
+
     editor = monaco.editor.create(container.value, {
         language: type.value,
-        theme: "vs-dark",
+        theme: theme.value,
         value: code.value
     })
 
