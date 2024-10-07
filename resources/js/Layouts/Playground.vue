@@ -1,8 +1,17 @@
 <script setup>
+import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
-import Navbar from '@/Components/Navbar.vue';
 import AppLogo from '@/Components/Icon/AppLogo.vue';
-import Avatar from '@/images/avatar.png'
+import Avatar from '@/images/avatar.png';
+import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
+
+const isNavbarVisible = ref(false);
+
+// Function to toggle the navbar visibility
+const toggleNavbar = () => {
+    isNavbarVisible.value = !isNavbarVisible.value;
+};
 </script>
 
 <template>
@@ -55,10 +64,49 @@ import Avatar from '@/images/avatar.png'
 
                 </ul>
                 <ul class="flex gap-3">
-                    <li>
-                        <span class="shrink-0">
-                            <img class="size-8 rounded-full border border-indigo-500" :src="Avatar" alt="">
-                        </span>
+                    <li v-if="$page.props.auth.user">
+                        <Dropdown align="right">
+                            <template #trigger>
+                                <div class="cursor-pointer">
+                                    <img class="size-8 rounded-full border-1 border-indigo-600" :src="Avatar"
+                                        alt="Profile picture">
+                                </div>
+                            </template>
+
+                            <template #content>
+
+                                <div class="w-32">
+                                    <DropdownLink
+                                        class="dark:text-neutral-300 dark:hover:bg-neutral-600 flex justify-between items-center gap-2"
+                                        href="">
+                                        <span class="text-nowrap">Profile</span>
+                                        <font-awesome-icon class="text-green-500" icon="user" />
+                                    </DropdownLink>
+
+                                    <DropdownLink
+                                        class="dark:text-neutral-300 dark:hover:bg-neutral-600 flex justify-between items-center gap-2 text-nowrap"
+                                        :href="route('logout')" method="post" as="button">
+                                        Log Out
+                                    </DropdownLink>
+                                </div>
+
+
+
+                            </template>
+                        </Dropdown>
+                    </li>
+
+                    <li v-else class="gap-4 hidden md:flex items-center">
+                        <Link :href="route('register')"
+                            class="text-neutral-700 text-md hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100">
+                        Register
+                        </Link>
+                        <span class="text-neutral-700 text-sm font-thin dark:text-neutral-300 ">or</span>
+                        <Link :href="route('login')"
+                            class="text-neutral-700 text-md hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100">
+                        Sign
+                        in</Link>
+
                     </li>
                 </ul>
             </nav>

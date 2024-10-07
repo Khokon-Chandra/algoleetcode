@@ -11,6 +11,7 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy';
  */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from '@fortawesome/fontawesome-svg-core'
+
 import { faPhone, faBars, faClose, faDatabase, faTerminal, faGlobe, faArchive, faAngleDown, faCheck, faCog, faSearch, faLock, faCheckCircle, faAngleLeft, faAngleRight, faIndent, faShuffle, faCaretRight, faCloudArrowUp, faNoteSticky, faCode, faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 library.add(faBars, faClose, faDatabase, faTerminal, faGlobe, faArchive, faAngleDown, faCheck, faCog, faSearch, faLock, faCheckCircle, faAngleLeft, faAngleRight,faIndent, faShuffle, faCaretRight, faCloudArrowUp, faNoteSticky, faCode, faCheckSquare)
 
