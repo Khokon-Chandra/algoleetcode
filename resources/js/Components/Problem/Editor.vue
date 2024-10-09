@@ -51,7 +51,7 @@ onMounted(() => {
                     code: code.value,
                 });
             }
-        }, 1000)()
+        }, 500)()
     })
 })
 

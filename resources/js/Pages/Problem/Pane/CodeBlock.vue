@@ -1,13 +1,10 @@
 <script setup>
-import { ref, onMounted, onBeforeMount } from 'vue';
-import { Link } from '@inertiajs/vue3';
+import { ref, onBeforeMount } from 'vue';
+import { Link, router } from '@inertiajs/vue3';
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
 import { useLocalStorage } from "@vueuse/core";
-
-
 import Editor from '@/Components/Problem/Editor.vue';
-import theme from 'tailwindcss/defaultTheme';
 
 
 const testCase = ref(true);
@@ -15,13 +12,8 @@ const testCase = ref(true);
 const selectedLanguage = useLocalStorage("selected-language", "cpp");
 
 const onChange = (payload) => {
-    console.log(payload);
-}
-
-const updateSelectedLanguage = () => {
 
 }
-
 
 const isDarkMode = ref(false);
 
@@ -48,7 +40,7 @@ onBeforeMount(() => {
 
                 <!-- Tab Section -->
                 <div class="dark:bg-neutral-700/50 flex gap-3 p-1">
-                    <select v-model="selectedLanguage" @change="updateSelectedLanguage"
+                    <select v-model="selectedLanguage"
                         class="bg-white dark:bg-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-600/60 border-none focus:border-none focus:outline-none ring-0 text-neutral-600 dark:text-neutral-100 py-0 rounded-md cursor-pointer">
                         <option selected value="cpp">C++</option>
                         <option value="php">PHP</option>
@@ -64,8 +56,8 @@ onBeforeMount(() => {
                 </div>
 
                 <div class="flex-1">
-                    <Editor :type="selectedLanguage" :theme="isDarkMode ? 'vs-dark' : 'vs-light'" @code-change="onChange"
-                        :key="selectedLanguage" />
+                    <Editor :type="selectedLanguage" :theme="isDarkMode ? 'vs-dark' : 'vs-light'"
+                        @code-change="onChange" :key="selectedLanguage" />
                 </div>
 
             </div>

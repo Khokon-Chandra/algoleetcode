@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <div class="flex min-h-screen flex-col items-center bg-neutral-100 pt-6 sm:justify-center sm:pt-0">
+    <div class="flex min-h-screen flex-col items-center bg-neutral-100 pt-6 sm:justify-center sm:pt-0 px-6">
         <div>
             <Link href="/">
             <div class="size-16 fill-current text-neutral-500">
@@ -32,14 +32,9 @@ import { Link } from '@inertiajs/vue3';
         </div>
 
         <div class="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg">
+            
             <slot />
 
-            <div class="flex gap-4 justify-center items-center">
-                <div>
-                    <font-awesome-icon :icon="['fab', 'facebook']" />
-
-                </div>
-            </div>
         </div>
     </div>
 </template>

@@ -8,18 +8,18 @@ import { Link } from '@inertiajs/vue3';
     <div class="h-full grid grid-rows-[auto_1fr] rounded-lg bg-white dark:bg-neutral-800 shadow-sm">
 
         <div class="dark:bg-neutral-700/50 flex p-1">
-            <Link
+            <Link :href="route('problems.show', 'two-sum')"
                 class="px-2 py-1 rounded-md flex justify-between items-center gap-2 hover:bg-neutral-200 dark:hover:bg-neutral-700">
-            <span class="text-indigo-500">
-                <font-awesome-icon icon="note"/>
+            <span class="text-blue-400">
+                <font-awesome-icon icon="note-sticky"/>
             </span>
             <span class="text-sm text-neutral-600 dark:text-neutral-200">Description</span>
             </Link>
 
-            <Link
+            <Link :href="route('problems.submissions','two-sum')"
                 class="px-2 py-1 rounded-md flex justify-between items-center gap-2 hover:bg-neutral-200 dark:hover:bg-neutral-700">
-            <span class="text-indigo-500">
-                <font-awesome-icon icon="note"/>
+            <span class="text-blue-400">
+                <font-awesome-icon icon="note-sticky"/>
             </span>
             <span class="text-sm text-neutral-600 dark:text-neutral-200">Submissions</span>
             </Link>

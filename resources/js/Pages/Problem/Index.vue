@@ -18,10 +18,17 @@ import pandas from '@/images/study-plan/pandas.png'
 import topInterview from '@/images/study-plan/top-interview.png'
 import sql from '@/images/study-plan/sql-50.png'
 
+import Pagination from '@/Components/Pagination.vue'
+
+
 
 const props = defineProps({
-    filters: Object
+    filters: Object,
+    tags: Object,
+    topics: Object,
+    problems: Object
 })
+
 
 </script>
 
@@ -124,9 +131,7 @@ const props = defineProps({
                                     <th scope="col" class="px-6 py-3">
                                         Title
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Solution
-                                    </th>
+
                                     <th scope="col" class="px-6 py-3">
                                         Acceptance
                                     </th>
@@ -134,13 +139,11 @@ const props = defineProps({
                                         Difficulty
                                     </th>
 
-                                    <th scope="col" class="px-6 py-3">
-                                        Freequency
-                                    </th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="n in 10" :key="n"
+                                <tr v-for="problem in problems.data" :key="problem.id"
                                     class="odd:bg-white odd:dark:bg-neutral-900 even:bg-neutral-50 even:dark:bg-neutral-800 ">
                                     <th scope="row"
                                         class="px-6 py-3 font-medium text-neutral-900 whitespace-nowrap dark:text-white">
@@ -149,32 +152,23 @@ const props = defineProps({
                                         </span>
                                     </th>
                                     <td>
-                                        <Link :href="route('problems.show','two-sum')" class="px-6 py-3 text-nowrap text-md text-neutral-700 dark:text-neutral-300 font-medium hover:text-blue-500">
-                                        Apple MacBook Pro 17
+                                        <Link :href="route('problems.show', problem.slug)"
+                                            class="px-6 py-3 text-nowrap text-md text-neutral-700 dark:text-neutral-300 font-medium hover:text-blue-500">
+                                        {{ problem.title }}
                                         </Link>
                                     </td>
+
                                     <td class="px-6 py-3">
-                                        <a href="#" class="text-blue-500 text-md"><svg
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em"
-                                                height="1em" fill="currentColor"
-                                                class="text-blue dark:text-dark-blue h-5 w-5">
-                                                <path
-                                                    d="M15.207 11.293a1 1 0 010 1.414l-3.5 3.5a1 1 0 01-1.414 0l-2-2a1 1 0 111.414-1.414L11 14.086l2.793-2.793a1 1 0 011.414 0z">
-                                                </path>
-                                                <path
-                                                    d="M4 5a3 3 0 013-3h7.039a3 3 0 012.342 1.126l2.962 3.701A3 3 0 0120 8.702V19a3 3 0 01-3 3H7a3 3 0 01-3-3V5zm3-1a1 1 0 00-1 1v14a1 1 0 001 1h10a1 1 0 001-1V9h-3a2 2 0 01-2-2V4H7zm8 .6V7h1.92L15 4.6z">
-                                                </path>
-                                            </svg></a>
+                                        {{ problem.acceptance }} %
                                     </td>
                                     <td class="px-6 py-3">
-                                        23432
+                                        <span :class="{
+                                            'text-green-500': problem.difficulty == 'easy',
+                                            'text-yellow-500': problem.difficulty == 'medium',
+                                            'text-red-500': problem.difficulty == 'hard'
+                                        }">{{ problem.difficulty }}</span>
                                     </td>
-                                    <td class="px-6 py-3">
-                                        <span class="text-green-500">Easy</span>
-                                    </td>
-                                    <td>
-                                        freequency
-                                    </td>
+
                                 </tr>
 
                             </tbody>
@@ -182,7 +176,9 @@ const props = defineProps({
                     </div>
 
                     <div class="flex justify-between items-center mt-3">
-                        <select class="border-none rounded-md dark:bg-neutral-800 dark:hover:bg-neutral-700 focus:ring-0 dark:text-neutral-300 py-1.5"
+
+                        <select
+                            class="border-none rounded-md dark:bg-neutral-800 dark:hover:bg-neutral-700 focus:ring-0 dark:text-neutral-300 py-1.5"
                             action="20/Page">
                             <option selected value="20">20 / Page</option>
                             <option value="50">50 / Page</option>
@@ -190,53 +186,8 @@ const props = defineProps({
                         </select>
 
 
+                        <Pagination :links="problems.links" />
 
-                        <nav aria-label="Page navigation example">
-                            <ul class="flex items-center gap-2 h-8 text-sm">
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-neutral-500 bg-white border border-e-0 border-neutral-300 rounded-s-lg hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white">
-                                        <span class="sr-only">Previous</span>
-                                        <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="M5 1 1 5l4 4" />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-center px-3 h-8 leading-tight text-neutral-500 bg-white border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white">1</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-center px-3 h-8 leading-tight text-neutral-500 bg-white border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white">2</a>
-                                </li>
-                                <li>
-                                    <a href="#" aria-current="page"
-                                        class="z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white">3</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-center px-3 h-8 leading-tight text-neutral-500 bg-white border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white">4</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-center px-3 h-8 leading-tight text-neutral-500 bg-white border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white">5</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-center px-3 h-8 leading-tight text-neutral-500 bg-white border border-neutral-300 rounded-e-lg hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white">
-                                        <span class="sr-only">Next</span>
-                                        <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="m1 9 4-4-4-4" />
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
             </div>

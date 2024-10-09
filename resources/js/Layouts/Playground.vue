@@ -1,17 +1,32 @@
 <script setup>
-import { ref } from 'vue';
-import { Link } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
+import { Link, router, usePage } from '@inertiajs/vue3';
+import { useLocalStorage } from "@vueuse/core";
 import AppLogo from '@/Components/Icon/AppLogo.vue';
 import Avatar from '@/images/avatar.png';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 
-const isNavbarVisible = ref(false);
+const testCase = ref(true);
 
-// Function to toggle the navbar visibility
-const toggleNavbar = () => {
-    isNavbarVisible.value = !isNavbarVisible.value;
-};
+const selectedLanguage = useLocalStorage("selected-language", "cpp");
+
+const code = useLocalStorage(`save-code-${selectedLanguage.value}`, "");
+
+
+const slug = computed(() => usePage().props.slug);
+
+const runCode = () => {
+
+    let url = route('problems.run', slug.value);
+
+    router.post(url, {
+        language: selectedLanguage.value,
+        code: code.value
+    });
+}
+
+
 </script>
 
 <template>
@@ -46,7 +61,7 @@ const toggleNavbar = () => {
                     </li>
                 </ul>
                 <ul class="flex space-x-0.5">
-                    <li
+                    <li @click="runCode"
                         class="px-3 py-1 dark:bg-neutral-700 dark:bg-opacity-50 dark:hover:bg-neutral-600 flex items-center gap-2 rounded-l-md cursor-pointer">
                         <font-awesome-icon class="text-neutral-600 dark:text-neutral-400 text-xl" icon="caret-right" />
                         <span class="text-md font-semibold dark:text-neutral-300">Run</span>
@@ -56,10 +71,6 @@ const toggleNavbar = () => {
                         class="px-3 py-1 dark:bg-neutral-700 dark:bg-opacity-50 dark:hover:bg-neutral-600 flex items-center gap-2 cursor-pointer">
                         <font-awesome-icon class="text-green-600 text-lg" icon="cloud-arrow-up" />
                         <span class="text-md font-semibold text-green-600">Submit</span>
-                    </li>
-                    <li
-                        class="px-3 py-1 text-neutral-400 dark:bg-neutral-700 dark:bg-opacity-50 dark:hover:bg-neutral-600 rounded-r-md">
-                        <font-awesome-icon class="dark:text-neutral-400" icon="note-sticky" />
                     </li>
 
                 </ul>

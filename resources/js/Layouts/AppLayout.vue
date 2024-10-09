@@ -9,7 +9,7 @@ import Navbar from '@/Components/Navbar.vue';
     </header>
 
     <main>
-        <div class="mx-auto max-w-7xl py-6 px-6 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl py-6 px-6 sm:px-6 lg:px-8 overflow-x-hidden">
             <slot />
         </div>
     </main>
