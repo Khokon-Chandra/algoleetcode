@@ -20,7 +20,7 @@ import sql from '@/images/study-plan/sql-50.png'
 
 import Pagination from '@/Components/Pagination.vue'
 
-
+const tagCollapse = ref(false);
 
 const props = defineProps({
     filters: Object,
@@ -29,6 +29,45 @@ const props = defineProps({
     problems: Object
 })
 
+
+const scrollSection = ref(null);
+const canScrollLeft = ref(false);
+const canScrollRight = ref(true);
+
+
+const checkScrollPosition = () => {
+
+    if (!scrollSection.value) {
+
+        return false;
+    }
+
+    const maxScrollLeft =
+        scrollSection.value.scrollWidth - scrollSection.value.clientWidth;
+
+    if (scrollSection.value.scrollLeft === maxScrollLeft) {
+        canScrollRight.value = false;
+        canScrollLeft.value = true;
+    }
+
+    if (scrollSection.value.scrollLeft === 0) {
+        canScrollRight.value = true;
+        canScrollLeft.value = false;
+    }
+
+};
+
+const scrollLeft = () => {
+    if (scrollSection.value) {
+        scrollSection.value.scrollBy({ left: -100, behavior: 'smooth' });
+    }
+};
+
+const scrollRight = () => {
+    if (scrollSection.value) {
+        scrollSection.value.scrollBy({ left: 100, behavior: 'smooth' });
+    }
+};
 
 </script>
 
@@ -85,32 +124,57 @@ const props = defineProps({
 
                 <!-- Tag -->
 
-                <div class="flex flex-wrap gap-4">
-                    <Tag :count="234" slug="">Array</Tag>
-                    <Tag :count="234" slug="">String</Tag>
-                    <Tag :count="234" slug="">Database </Tag>
-                    <Tag :count="234" slug="">Hash Table</Tag>
-                    <Tag :count="234" slug="">Pointer</Tag>
+                <div>
+                    <div v-if="tagCollapse == false" class="flex flex-wrap gap-4">
+                        <Tag v-for="tag in tags.slice(0, 8)" :key="tag.id" :count="tag.problems_count" :slug="tag.slug">
+                            {{ tag.name }}
+                        </Tag>
 
+                        <span @click="tagCollapse = true"
+                            class="ml-auto text-sm text-neutral-600 dark:text-neutral-300 cursor-pointer">Expand
+                            <font-awesome-icon icon="angles-down" /></span>
+                    </div>
+
+                    <div v-else class="flex flex-wrap gap-4">
+                        <Tag v-for="tag in tags" :key="tag.id" :count="tag.problems_count" :slug="tag.slug">
+                            {{ tag.name }}
+                        </Tag>
+                        <span @click="tagCollapse = false"
+                            class="ml-auto text-sm text-neutral-600 dark:text-neutral-300 cursor-pointer">Collapse
+                            <font-awesome-icon icon="angles-up" /></span>
+
+                    </div>
                 </div>
 
                 <!-- Topics -->
 
-                <div class="flex gap-4 overflow-x-hidden">
+                <div class="flex justify-between items-center">
+                    <div ref="scrollSection" @scroll="checkScrollPosition"
+                        class="flex gap-4 w-full overflow-x-auto scroll-smooth scrollbar-hide">
 
-                    <div
-                        class="cursor-pointer flex items-center gap-3 bg-neutral-900 hover:bg-neutral-900 rounded-full px-3 py-2 text-neutral-200 dark:hover:bg-neutral-200 dark:bg-neutral-300  dark:text-neutral-900">
-                        <div class="">
-                            <font-awesome-icon icon="archive" />
-                        </div>
-                        <h6 class="text-nowrap">All Topics</h6>
+                        <Link preserve-scroll :href="route('problems.index',{...$page.props.filters, topic:'all'})"
+                            :class="{
+                                'text-neutral-200 bg-neutral-900 dark:hover:bg-neutral-200 dark:bg-neutral-300  dark:text-neutral-900':$page.props.filters.topic == 'all',
+                                ' bg-neutral-100 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800 rounded-full px-3 py-2 text-neutral-600 dark:text-neutral-300' : $page.props.filters.topic !== 'all'
+
+                            }"
+                            class="cursor-pointer flex items-center gap-3  rounded-full px-3 py-2">
+                            <div class="">
+                                <font-awesome-icon icon="archive" />
+                            </div>
+                            <h6 class="text-nowrap">All Topics</h6>
+                        </Link>
+
+                        <Topic v-for="topic in topics" :key="topic.id" :data="topic" />
+
                     </div>
 
-                    <Topic logo="terminal">Algorithm</Topic>
-
-                    <Topic logo="database">Database</Topic>
-
-
+                    <span class="cursor-pointer text-neutral-600 dark:text-neutral-300 dark:bg-neutral-900">
+                        <font-awesome-icon v-if="canScrollRight" @click="scrollRight" class="px-3 py-1"
+                            icon="angles-right" />
+                        <font-awesome-icon v-if="canScrollLeft" @click="scrollLeft" class="px-3 py-1"
+                            icon="angles-left" />
+                    </span>
                 </div>
 
                 <!-- Filter Bar -->
@@ -152,9 +216,9 @@ const props = defineProps({
                                         </span>
                                     </th>
                                     <td>
-                                        <Link :href="route('problems.show', problem.slug)"
+                                        <Link :href="route('problems.show', problem.slug)" :title="problem.title"
                                             class="px-6 py-3 text-nowrap text-md text-neutral-700 dark:text-neutral-300 font-medium hover:text-blue-500">
-                                        {{ problem.title }}
+                                        {{ problem.title.length > 50 ? problem.title.slice(0,50) + "..." : problem.title }}
                                         </Link>
                                     </td>
 
@@ -257,3 +321,16 @@ const props = defineProps({
         </div>
     </AppLayout>
 </template>
+
+<style scoped>
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+</style>

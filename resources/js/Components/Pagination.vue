@@ -11,9 +11,11 @@ defineProps({
     <div v-if="links.length > 3">
         <div class="flex flex-wrap -mb-1">
             <template v-for="(link, key) in links">
+                
                 <div v-if="link.url === null" :key="key"
                     class="mb-1 mr-1 px-4 py-2 text-neutral-400 dark:text-neutral-300 text-sm leading-4 rounded">
-                    <font-awesome-icon v-if="key == 0" icon="angle-left" />
+                    <font-awesome-icon class="text-neutral-500 dark:text-neutral-500" v-if="key == 0" icon="angle-left" />
+                    <font-awesome-icon class="text-neutral-500 dark:text-neutral-500" v-else-if="key == links.length-1" icon="angle-right"/>
                     <span v-else>{{ link.label }}</span>
                 </div>
 

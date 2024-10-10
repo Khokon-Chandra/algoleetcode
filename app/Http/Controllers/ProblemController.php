@@ -15,7 +15,7 @@ class ProblemController extends Controller
     {
         return Inertia::render('Problem/Index', [
             'filters' => $request->all(),
-            'tags' => Tag::all(),
+            'tags' => Tag::withCount('problems')->get(),
             'topics' => Topic::all(),
             'problems' => Problem::with('tags')->paginate($request->range ?? 20)->onEachSide(1),
         ]);
