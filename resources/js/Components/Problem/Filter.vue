@@ -1,8 +1,14 @@
 <script setup>
 import { ref } from 'vue';
-import { router, useForm } from '@inertiajs/vue3';
+import { router, useForm, usePage } from '@inertiajs/vue3';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '../DropdownLink.vue';
+
+
+const props = defineProps({
+    tags: Object,
+    filters: Object
+})
 
 const form = useForm({
     search: ""
@@ -11,6 +17,39 @@ const form = useForm({
 
 const search = () => {
     router.get(route('problems.index'), { search: form.search })
+}
+
+
+
+const selected = ref(false);
+
+const selectedTags = usePage().props.filters.tags?.split(',') || [];
+
+if (selectedTags.includes(props.slug)) {
+    selected.value = true;
+}
+
+
+
+
+const toggleTag = (slug) => {
+    let tags = null;
+
+
+    if (selectedTags.includes(slug)) {
+        tags = selectedTags.filter(item => item !== slug);
+    } else {
+        selectedTags.push(slug);
+        tags = selectedTags;
+        console.log(selectedTags);
+    }
+
+    router.get(route('problems.index'), {
+        ...page.props.filters,
+        tags: tags.join(',')
+    }, {
+        preserveScroll: true
+    })
 }
 
 </script>
@@ -22,7 +61,7 @@ const search = () => {
             <!-- <DropdownFilter /> -->
 
             <!-- Lists -->
-            <div class="flex-1">
+            <!-- <div class="flex-1">
                 <Dropdown align="left">
                     <template #trigger>
                         <span class="inline-flex rounded-md w-full">
@@ -34,7 +73,7 @@ const search = () => {
                         </span>
                     </template>
 
-                    <template #content>
+<template #content>
 
                         <DropdownLink
                             class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
@@ -46,8 +85,8 @@ const search = () => {
 
 
                     </template>
-                </Dropdown>
-            </div>
+</Dropdown>
+</div> -->
 
             <!-- Difficulty -->
             <div class="flex-1">
@@ -66,23 +105,26 @@ const search = () => {
 
                         <DropdownLink
                             class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
-                            href="">
+                            :href="route('problems.index', { ...$page.props.filters, difficulty: 'easy' })">
                             <span class="text-nowrap">Easy</span>
-                            <font-awesome-icon class="text-green-500" icon="check" />
+                            <font-awesome-icon v-if="$page.props.filters.difficulty == 'easy'" class="text-green-500"
+                                icon="check" />
                         </DropdownLink>
 
                         <DropdownLink
                             class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
-                            href="">
+                            :href="route('problems.index', { ...$page.props.filters, difficulty: 'medium' })">
                             <span class="text-nowrap">Medium</span>
-                            <font-awesome-icon class="text-green-500" icon="check" />
+                            <font-awesome-icon v-if="$page.props.filters.difficulty == 'medium'" class="text-green-500"
+                                icon="check" />
                         </DropdownLink>
 
                         <DropdownLink
                             class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
-                            href="">
+                            :href="route('problems.index', { ...$page.props.filters, difficulty: 'hard' })">
                             <span class="text-nowrap">Hard</span>
-                            <font-awesome-icon class="text-green-500" icon="check" />
+                            <font-awesome-icon v-if="$page.props.filters.difficulty == 'hard'" class="text-green-500"
+                                icon="check" />
                         </DropdownLink>
 
 
@@ -96,7 +138,9 @@ const search = () => {
                 <Dropdown align="left">
                     <template #trigger>
                         <span class="inline-flex rounded-md w-full">
-                            <button type="button"
+                            <button :disabled="!$page.props.auth.user" :class="{
+                                'text-neutral-400 dark:text-neutral-700': !$page.props.auth.user
+                            }" type="button"
                                 class="w-full inline-flex items-center justify-between gap-2 rounded-md border border-transparent bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-100 px-3 py-2 text-sm font-medium leading-4 text-neutral-500 transition duration-150 ease-in-out hover:text-neutral-700 focus:outline-none">
                                 Status
                                 <font-awesome-icon icon="angle-down" />
@@ -108,27 +152,27 @@ const search = () => {
 
                         <DropdownLink
                             class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
-                            href="">
+                            :href="route('problems.index', { ...$page.props.filters, status: 'todo' })">
                             <span class="text-nowrap">Todo</span>
-                            <font-awesome-icon class="text-green-500" icon="check" />
+                            <font-awesome-icon v-if="$page.props.filters.status == 'todo'" class="text-blue-500"
+                                icon="check" />
                         </DropdownLink>
-
 
                         <DropdownLink
                             class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
-                            href="">
+                            :href="route('problems.index', { ...$page.props.filters, status: 'solved' })">
                             <span class="text-nowrap">Solved</span>
-                            <font-awesome-icon class="text-green-500" icon="check" />
+                            <font-awesome-icon v-if="$page.props.filters.status == 'solved'" class="text-blue-500"
+                                icon="check" />
                         </DropdownLink>
 
                         <DropdownLink
                             class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
-                            href="">
+                            :href="route('problems.index', { ...$page.props.filters, status: 'attemped' })">
                             <span class="text-nowrap">Attempted</span>
-                            <font-awesome-icon class="text-green-500" icon="check" />
+                            <font-awesome-icon v-if="$page.props.filters.status == 'attemped'" class="text-blue-500"
+                                icon="check" />
                         </DropdownLink>
-
-
 
                     </template>
                 </Dropdown>

@@ -14,10 +14,10 @@ class ProblemController extends Controller
     public function index(Request $request)
     {
         return Inertia::render('Problem/Index', [
-            'filters' => $request->all(),
-            'tags' => Tag::withCount('problems')->get(),
-            'topics' => Topic::all(),
-            'problems' => Problem::with('tags')->paginate($request->range ?? 20)->onEachSide(1),
+            'filters'  => $request->all(),
+            'tags'     => Tag::withCount('problems')->get(),
+            'topics'   => Topic::all(),
+            'problems' => Problem::with('tags')->paginate($request->range ?? 10)->withQueryString()->onEachSide(1),
         ]);
     }
 

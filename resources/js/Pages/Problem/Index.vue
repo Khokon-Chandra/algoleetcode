@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { usePage, Head, Link } from '@inertiajs/vue3'
+import { usePage, Head, Link, router } from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import StudyPlanCard from '@/Components/Problem/StudyPlanCard.vue'
 import Tag from '@/Components/Problem/Tag.vue'
@@ -34,6 +34,7 @@ const scrollSection = ref(null);
 const canScrollLeft = ref(false);
 const canScrollRight = ref(true);
 
+const range = ref(props.filters.range || 10);
 
 const checkScrollPosition = () => {
 
@@ -68,6 +69,14 @@ const scrollRight = () => {
         scrollSection.value.scrollBy({ left: 100, behavior: 'smooth' });
     }
 };
+
+
+const changeRange = () => {
+    let params = { ...props.filters, range: range.value };
+    router.get(route('problems.index'), params, {
+        preserveScroll: true
+    })
+}
 
 </script>
 
@@ -152,17 +161,16 @@ const scrollRight = () => {
                     <div ref="scrollSection" @scroll="checkScrollPosition"
                         class="flex gap-4 w-full overflow-x-auto scroll-smooth scrollbar-hide">
 
-                        <Link preserve-scroll :href="route('problems.index',{...$page.props.filters, topic:'all'})"
+                        <Link preserve-scroll :href="route('problems.index', { ...$page.props.filters, topic: 'all' })"
                             :class="{
-                                'text-neutral-200 bg-neutral-900 dark:hover:bg-neutral-200 dark:bg-neutral-300  dark:text-neutral-900':$page.props.filters.topic == 'all',
-                                ' bg-neutral-100 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800 rounded-full px-3 py-2 text-neutral-600 dark:text-neutral-300' : $page.props.filters.topic !== 'all'
+                                'text-neutral-200 bg-neutral-900 dark:hover:bg-neutral-200 dark:bg-neutral-300  dark:text-neutral-900': $page.props.filters.topic == 'all',
+                                ' bg-neutral-100 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800 rounded-full px-3 py-2 text-neutral-600 dark:text-neutral-300': $page.props.filters.topic !== 'all'
 
-                            }"
-                            class="cursor-pointer flex items-center gap-3  rounded-full px-3 py-2">
-                            <div class="">
-                                <font-awesome-icon icon="archive" />
-                            </div>
-                            <h6 class="text-nowrap">All Topics</h6>
+                            }" class="cursor-pointer flex items-center gap-3  rounded-full px-3 py-2">
+                        <div class="">
+                            <font-awesome-icon icon="archive" />
+                        </div>
+                        <h6 class="text-nowrap">All Topics</h6>
                         </Link>
 
                         <Topic v-for="topic in topics" :key="topic.id" :data="topic" />
@@ -218,7 +226,9 @@ const scrollRight = () => {
                                     <td>
                                         <Link :href="route('problems.show', problem.slug)" :title="problem.title"
                                             class="px-6 py-3 text-nowrap text-md text-neutral-700 dark:text-neutral-300 font-medium hover:text-blue-500">
-                                        {{ problem.title.length > 50 ? problem.title.slice(0,50) + "..." : problem.title }}
+                                        {{ problem.title.length > 50 ? problem.title.slice(0, 50) + "..." :
+                                            problem.title
+                                        }}
                                         </Link>
                                     </td>
 
@@ -241,12 +251,9 @@ const scrollRight = () => {
 
                     <div class="flex justify-between items-center mt-3">
 
-                        <select
-                            class="border-none rounded-md dark:bg-neutral-800 dark:hover:bg-neutral-700 focus:ring-0 dark:text-neutral-300 py-1.5"
-                            action="20/Page">
-                            <option selected value="20">20 / Page</option>
-                            <option value="50">50 / Page</option>
-                            <option value="100">100 / Page</option>
+                        <select @change="changeRange" v-model="range"
+                            class="border-none rounded-md dark:bg-neutral-800 dark:hover:bg-neutral-700 focus:ring-0 dark:text-neutral-300 py-1.5">
+                            <option v-for="item in [10, 20, 50, 100]" :key="item" :value="item">{{ item }}/Page</option>
                         </select>
 
 

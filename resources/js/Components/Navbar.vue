@@ -20,21 +20,16 @@ const toggleNavbar = () => {
             <li>
                 <AppLogo></AppLogo>
             </li>
-            <li class="hidden md:flex">
-                <Link class="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-neutral-100 py-3"
-                    href="javascript:void(0)">Explore</Link>
-            </li>
+
             <li class="hidden md:flex">
                 <Link :class="route().current('problems.index') ? 'active' : ''"
                     class="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-neutral-100 py-3"
                     :href="route('problems.index')">Problems</Link>
             </li>
+
             <li class="hidden md:flex">
-                <Link class="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-neutral-100 py-3" href="#">
-                Contest</Link>
-            </li>
-            <li class="hidden md:flex">
-                <Link class="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-neutral-100 py-3" href="#">
+                <Link class="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-neutral-100 py-3"
+                    href="#">
                 Discuss</Link>
             </li>
         </ul>
@@ -85,7 +80,7 @@ const toggleNavbar = () => {
                             <DropdownLink
                                 class="dark:text-neutral-300 dark:hover:bg-neutral-600 flex justify-between items-center gap-2 text-nowrap"
                                 :href="route('logout')" method="post" as="button">
-                                Log Out
+                                Sign out
                             </DropdownLink>
                         </div>
 
@@ -98,11 +93,13 @@ const toggleNavbar = () => {
 
         <div v-else class="gap-4 hidden md:flex items-center">
             <Link :href="route('register')"
-                class="text-neutral-700 text-md hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100">Register
+                class="text-neutral-700 text-md hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100">
+            Register
             </Link>
             <span class="text-neutral-700 text-sm font-thin dark:text-neutral-300 ">or</span>
             <Link :href="route('login')"
-                class="text-neutral-700 text-md hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100">Sign
+                class="text-neutral-700 text-md hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100">
+            Sign
             in</Link>
 
         </div>
@@ -148,21 +145,7 @@ const toggleNavbar = () => {
         </div>
 
         <ul class="flex flex-col gap-1 p-6">
-            <li>
-                <a class="text-neutral-600 dark:text-neutral-300 flex gap-4 items-center p-2 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800"
-                    href="javascript:void(0)">
-                    <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"
-                            fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M13.183 13.68a1 1 0 00.365-.365l3.144-5.434c.1-.174-.09-.371-.267-.276l-5.57 2.97a1 1 0 00-.412.411l-2.97 5.57c-.095.178.102.369.276.268l5.434-3.144zm-.736-.934a.75.75 0 11-1.061-1.061.75.75 0 011.06 1.06z"
-                                clip-rule="evenodd"></path>
-                            <path fill-rule="evenodd"
-                                d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 11-16 0 8 8 0 0116 0z"
-                                clip-rule="evenodd"></path>
-                        </svg></span>
-                    <span>Explore</span>
-                </a>
-            </li>
+
             <li>
                 <a class="text-neutral-600 dark:text-neutral-300 flex gap-4 items-center p-2 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800"
                     href="javascript:void(0)">
@@ -205,16 +188,15 @@ const toggleNavbar = () => {
                 <form method="POST" action="{{ route('logout') }}"
                     class="text-red-600 hover:text-red-800  p-2 border-b border-neutral-200 dark:border-neutral-700  dark:bg-neutral-800">
                     <input type="hidden" name="_token" :value="$page.props.csrf_token">
-                    <Link :href="route('logout')" method="post" as="button"
-                        class="w-full flex gap-4 items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"
-                            fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M2 11.001a9.001 9.001 0 014.974-8.047A8.876 8.876 0 0110.998 2h.535c.018 0 .037 0 .055.002 3.934.218 7.204 3.02 8.15 6.753a1 1 0 01-1.94.49c-.734-2.9-3.27-5.065-6.294-5.245h-.51a6.876 6.876 0 00-3.12.74l-.004.002A7.001 7.001 0 004 11.003v.002a6.873 6.873 0 00.738 3.117c.206.407.271.871.185 1.32l-.387 2.022 2.022-.387c.448-.086.912-.021 1.32.185.44.222.9.395 1.373.518a1 1 0 11-.502 1.936 8.865 8.865 0 01-1.773-.669.067.067 0 00-.042-.006l-3.47.665a1 1 0 01-1.17-1.17l.665-3.47a.067.067 0 00-.006-.043A8.873 8.873 0 012 11.001zM17.004 20h-.005a3 3 0 01-2.68-1.658l-.004-.007A2.936 2.936 0 0114 17.004v-.206a2.995 2.995 0 012.773-2.797l.233-.001c.46-.001.917.107 1.33.315l.007.004A3 3 0 0120 17v.005c.001.425-.09.845-.268 1.232l-.133.29a1 1 0 00-.074.606l.093.485-.484-.093a1 1 0 00-.606.073l-.29.134a2.937 2.937 0 01-1.234.268zm-.296-8A4.995 4.995 0 0012 16.738v.262c-.002.777.18 1.543.53 2.237a5 5 0 006.542 2.313l2.303.441c.365.07.686-.25.616-.615l-.441-2.303a5 5 0 00-2.312-6.541A4.937 4.937 0 0017 12h-.292z"
-                                clip-rule="evenodd"></path>
-                        </svg>
+                    <Link :href="route('logout')" method="post" as="button" class="w-full flex gap-4 items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"
+                        fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M2 11.001a9.001 9.001 0 014.974-8.047A8.876 8.876 0 0110.998 2h.535c.018 0 .037 0 .055.002 3.934.218 7.204 3.02 8.15 6.753a1 1 0 01-1.94.49c-.734-2.9-3.27-5.065-6.294-5.245h-.51a6.876 6.876 0 00-3.12.74l-.004.002A7.001 7.001 0 004 11.003v.002a6.873 6.873 0 00.738 3.117c.206.407.271.871.185 1.32l-.387 2.022 2.022-.387c.448-.086.912-.021 1.32.185.44.222.9.395 1.373.518a1 1 0 11-.502 1.936 8.865 8.865 0 01-1.773-.669.067.067 0 00-.042-.006l-3.47.665a1 1 0 01-1.17-1.17l.665-3.47a.067.067 0 00-.006-.043A8.873 8.873 0 012 11.001zM17.004 20h-.005a3 3 0 01-2.68-1.658l-.004-.007A2.936 2.936 0 0114 17.004v-.206a2.995 2.995 0 012.773-2.797l.233-.001c.46-.001.917.107 1.33.315l.007.004A3 3 0 0120 17v.005c.001.425-.09.845-.268 1.232l-.133.29a1 1 0 00-.074.606l.093.485-.484-.093a1 1 0 00-.606.073l-.29.134a2.937 2.937 0 01-1.234.268zm-.296-8A4.995 4.995 0 0012 16.738v.262c-.002.777.18 1.543.53 2.237a5 5 0 006.542 2.313l2.303.441c.365.07.686-.25.616-.615l-.441-2.303a5 5 0 00-2.312-6.541A4.937 4.937 0 0017 12h-.292z"
+                            clip-rule="evenodd"></path>
+                    </svg>
 
-                        <span class="text-nowrap">Sign out</span>
+                    <span class="text-nowrap">Sign out</span>
 
                     </Link>
 
