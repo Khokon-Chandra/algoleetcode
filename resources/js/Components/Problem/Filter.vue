@@ -1,55 +1,45 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { router, useForm, usePage } from '@inertiajs/vue3';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '../DropdownLink.vue';
 
+const page = usePage();
 
-const props = defineProps({
-    tags: Object,
-    filters: Object
+
+const tagSearchInput = ref(null);
+
+const filteredTags = computed(() => {
+    if (tagSearchInput.value) {
+        return page.props.tags.filter(tag => tag.name.includes(tagSearchInput.value));
+    }
+    return page.props.tags;
 })
 
-const form = useForm({
-    search: ""
-})
 
 
-const search = () => {
-    router.get(route('problems.index'), { search: form.search })
-}
+const selectedTags = computed(() => {
 
+    let tags = page.props.filters.tags.split(',');
 
-
-const selected = ref(false);
-
-const selectedTags = usePage().props.filters.tags?.split(',') || [];
-
-if (selectedTags.includes(props.slug)) {
-    selected.value = true;
-}
-
-
-
-
-const toggleTag = (slug) => {
-    let tags = null;
-
-
-    if (selectedTags.includes(slug)) {
-        tags = selectedTags.filter(item => item !== slug);
-    } else {
-        selectedTags.push(slug);
-        tags = selectedTags;
-        console.log(selectedTags);
+    if (tags.length) {
+        return page.props.tags.filter(tag => tags.includes(tag.slug));
     }
 
-    router.get(route('problems.index'), {
-        ...page.props.filters,
-        tags: tags.join(',')
-    }, {
-        preserveScroll: true
-    })
+    return null;
+})
+
+
+
+const selectTag = (slug) => {
+
+
+    let tags = page.props.filters.tags?.split(',') || [];
+    tags.push(slug)
+
+    let params = { ...page.props.filters, tags: tags.join(',') }
+
+    router.get(route('problems.index'), params, {preserveScroll:true});
 }
 
 </script>
@@ -58,35 +48,6 @@ const toggleTag = (slug) => {
     <div class="flex flex-col gap-4">
         <div class="flex w-full flex-wrap gap-2">
 
-            <!-- <DropdownFilter /> -->
-
-            <!-- Lists -->
-            <!-- <div class="flex-1">
-                <Dropdown align="left">
-                    <template #trigger>
-                        <span class="inline-flex rounded-md w-full">
-                            <button type="button"
-                                class="w-full inline-flex items-center justify-between gap-2 rounded-md border border-transparent bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-100 px-3 py-2 text-sm font-medium leading-4 text-neutral-500 transition duration-150 ease-in-out hover:text-neutral-700 focus:outline-none">
-                                Lists
-                                <font-awesome-icon icon="angle-down" />
-                            </button>
-                        </span>
-                    </template>
-
-<template #content>
-
-                        <DropdownLink
-                            class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
-                            href="">
-                            <span class="text-nowrap">LeetCode curated Algo 170</span>
-                            <font-awesome-icon class="text-green-500" icon="check" />
-                        </DropdownLink>
-
-
-
-                    </template>
-</Dropdown>
-</div> -->
 
             <!-- Difficulty -->
             <div class="flex-1">
@@ -197,7 +158,7 @@ const toggleTag = (slug) => {
                         <div class="w-[300px] space-y-4 p-2">
 
                             <div class="relative w-min[250px] flex items-center">
-                                <input type="text"
+                                <input type="search" v-model="tagSearchInput"
                                     class="relative border-none rounded-md bg-neutral-100 dark:bg-neutral-700/20 dark:text-neutral-300 dark:focus:bg-neutral-700/50 focus:bg-neutral-200 focus:outline-none focus:ring-0 w-full h-auto pl-9 py-1.5 placeholder:text-neutral-500 placeholder:text-sm placeholder:font-thin"
                                     placeholder="filter topics">
                                 <span class="absolute left-4 text-neutral-400 dark:text-neutral-300 ">
@@ -206,16 +167,11 @@ const toggleTag = (slug) => {
                             </div>
 
 
-                            <div class="flex flex-wrap gap-2">
-                                <a href="javascript:void(0)"
-                                    class="cursor-pointer text-xs font-thin text-neutral-600 bg-neutral-200 dark:text-neutral-200 dark:bg-neutral-700 px-2 py-1 rounded-lg">Array</a>
-                                <a href="javascript:void(0)"
-                                    class="cursor-pointer text-xs font-thin text-neutral-600 bg-neutral-200 dark:text-neutral-200 dark:bg-neutral-700 px-2 py-1 rounded-lg">String</a>
-                                <a href="javascript:void(0)"
-                                    class="cursor-pointer text-xs font-thin text-neutral-600 bg-neutral-200 dark:text-neutral-200 dark:bg-neutral-700 px-2 py-1 rounded-lg">Hash
-                                    Table</a>
-                                <a href="javascript:void(0)"
-                                    class="cursor-pointer text-xs font-thin text-neutral-600 bg-neutral-200 dark:text-neutral-200 dark:bg-neutral-700 px-2 py-1 rounded-lg">Database</a>
+                            <div class="flex flex-wrap gap-2 custom-scrollbar overflow-y-auto max-h-64 py-4">
+                                <button v-for="tag in filteredTags" :key="tag.id" @click="selectTag(tag.slug)"
+                                    class="cursor-pointer text-xs font-thin text-neutral-600 bg-neutral-200 dark:text-neutral-200 dark:bg-neutral-700 px-2 py-1 rounded-lg">{{
+                                        tag.name }}</button>
+
                             </div>
 
                         </div>
@@ -313,3 +269,22 @@ const toggleTag = (slug) => {
 
 
 </template>
+
+<style scoped>
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    /* Set the width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #6b7280;
+    /* Tailwind `neutral-500` (Scrollbar thumb color) */
+    border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #4c4e52;
+    /* Tailwind `neutral-700` (Scrollbar track color) */
+}
+</style>
