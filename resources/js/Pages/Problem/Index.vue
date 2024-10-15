@@ -20,14 +20,13 @@ import sql from '@/images/study-plan/sql-50.png'
 
 import Pagination from '@/Components/Pagination.vue'
 
+const props = usePage().props;
+
 const tagCollapse = ref(false);
 
-const props = defineProps({
-    filters: Object,
-    tags: Object,
-    topics: Object,
-    problems: Object
-})
+const tags = ref(props.tags);
+const topics = ref(props.topics);
+const problems = ref(props.problems);
 
 
 const scrollSection = ref(null);
@@ -72,10 +71,18 @@ const scrollRight = () => {
 
 
 const changeRange = () => {
-    let params = { ...props.filters, range: range.value };
+    let params = { ...usePage().props.filters, range: range.value };
     router.get(route('problems.index'), params, {
-        preserveScroll: true
+        preserveScroll: true,
+        preserveState: true,
+        onSuccess: (page) => {
+            problems.value = page.props.problems
+        }
     })
+}
+
+const updateProblems = (newProblems) => {
+    problems.value = newProblems;
 }
 
 </script>
@@ -135,9 +142,8 @@ const changeRange = () => {
 
                 <div>
                     <div v-if="tagCollapse == false" class="flex flex-wrap gap-4">
-                        <Tag v-for="tag in tags.slice(0, 8)" :key="tag.id" :count="tag.problems_count" :slug="tag.slug">
-                            {{ tag.name }}
-                        </Tag>
+                        <Tag v-for="tag in tags.slice(0, 8)" :key="tag.id" :tag="tag"
+                            @update-problems="updateProblems" />
 
                         <span @click="tagCollapse = true"
                             class="ml-auto text-sm text-neutral-600 dark:text-neutral-300 cursor-pointer">Expand
@@ -145,9 +151,7 @@ const changeRange = () => {
                     </div>
 
                     <div v-else class="flex flex-wrap gap-4">
-                        <Tag v-for="tag in tags" :key="tag.id" :count="tag.problems_count" :slug="tag.slug">
-                            {{ tag.name }}
-                        </Tag>
+                        <Tag v-for="tag in tags" :key="tag.id" :tag="tag" @update-problems="updateProblems" />
                         <span @click="tagCollapse = false"
                             class="ml-auto text-sm text-neutral-600 dark:text-neutral-300 cursor-pointer">Collapse
                             <font-awesome-icon icon="angles-up" /></span>
@@ -173,7 +177,8 @@ const changeRange = () => {
                         <h6 class="text-nowrap">All Topics</h6>
                         </Link>
 
-                        <Topic v-for="topic in topics" :key="topic.id" :data="topic" />
+                        <Topic v-for="topic in topics" :key="topic.id" :data="topic"
+                            @update-problems="updateProblems" />
 
                     </div>
 
@@ -187,7 +192,7 @@ const changeRange = () => {
 
                 <!-- Filter Bar -->
 
-                <Filter />
+                <Filter @update-problems="updateProblems" />
 
 
                 <!-- Table List -->
@@ -236,7 +241,7 @@ const changeRange = () => {
                                         {{ problem.acceptance }} %
                                     </td>
                                     <td class="px-6 py-3">
-                                        <span :class="{
+                                        <span class="capitalize" :class="{
                                             'text-green-500': problem.difficulty == 'easy',
                                             'text-yellow-500': problem.difficulty == 'medium',
                                             'text-red-500': problem.difficulty == 'hard'

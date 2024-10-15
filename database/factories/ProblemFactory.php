@@ -21,7 +21,7 @@ class ProblemFactory extends Factory
             'topic_id'    => Topic::inRandomOrder()->first()->id,
             'title'       => fake()->sentence(),
             'description' => fake()->paragraph(),
-            'difficulty'  => 'easy'
+            'difficulty'  => ['easy', 'medium', 'hard'][rand(0, 2)]
         ];
     }
 }

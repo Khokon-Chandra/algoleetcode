@@ -1,10 +1,43 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { router, useForm, usePage } from '@inertiajs/vue3';
+import { router, usePage } from '@inertiajs/vue3';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '../DropdownLink.vue';
 
 const page = usePage();
+
+const emit = defineEmits("update-problems");
+
+
+let debounceTimer = null;
+
+
+const title = ref(usePage().props.filters.search || "");
+
+const search = () => {
+
+    clearTimeout(debounceTimer);
+
+    // Start a new debounce timer
+    debounceTimer = setTimeout(() => {
+
+        router.get(route('problems.index'),
+            {
+                ...usePage().props.filters,
+                page: 1,
+                search: title.value
+            },
+            {
+                preserveScroll: true,
+                preserveState: true,
+                onSuccess: (page) => {
+                    emit("update-problems", page.props.problems);
+                }
+            });
+
+    }, 400);
+
+}
 
 
 const tagSearchInput = ref(null);
@@ -20,26 +53,45 @@ const filteredTags = computed(() => {
 
 const selectedTags = computed(() => {
 
-    let tags = page.props.filters.tags.split(',');
+    return usePage().props.filters.tags?.split(',') || [];
 
-    if (tags.length) {
-        return page.props.tags.filter(tag => tags.includes(tag.slug));
-    }
-
-    return null;
 })
 
 
 
-const selectTag = (slug) => {
 
 
-    let tags = page.props.filters.tags?.split(',') || [];
-    tags.push(slug)
+const toggleTag = (slug) => {
+
+    let tags = selectedTags.value;
+
+    if (tags.includes(slug)) {
+        tags = tags.filter(tag => tag !== slug)
+    } else {
+        tags.push(slug)
+    }
 
     let params = { ...page.props.filters, tags: tags.join(',') }
 
-    router.get(route('problems.index'), params, {preserveScroll:true});
+    router.get(route('problems.index'), params, { preserveScroll: true, preserveState: true });
+}
+
+
+const removeDifficulty = () => {
+    router.get(route('problems.index'), {
+        ...usePage().props.filters,
+        page: 1,
+        difficulty: null,
+    }, { preserveScroll: true })
+}
+
+
+const removeStatus = () => {
+    router.get(route('problems.index'), {
+        ...usePage().props.filters,
+        page: 1,
+        status: null,
+    }, { preserveScroll: true })
 }
 
 </script>
@@ -168,9 +220,11 @@ const selectTag = (slug) => {
 
 
                             <div class="flex flex-wrap gap-2 custom-scrollbar overflow-y-auto max-h-64 py-4">
-                                <button v-for="tag in filteredTags" :key="tag.id" @click="selectTag(tag.slug)"
-                                    class="cursor-pointer text-xs font-thin text-neutral-600 bg-neutral-200 dark:text-neutral-200 dark:bg-neutral-700 px-2 py-1 rounded-lg">{{
-                                        tag.name }}</button>
+                                <button v-for="tag in filteredTags" :key="tag.id" @click="toggleTag(tag.slug)" :class="{
+                                    'bg-blue-600 dark:bg-blue-600 text-white': selectedTags.includes(tag.slug),
+                                    ' bg-neutral-200 text-neutral-600 dark:text-neutral-200 dark:bg-neutral-700': !selectedTags.includes(tag.slug),
+                                }" class="cursor-pointer text-xs font-thin  px-2 py-1 rounded-lg">{{
+                                    tag.name }}</button>
 
                             </div>
 
@@ -188,7 +242,7 @@ const selectTag = (slug) => {
                 <!-- Search bar -->
                 <div class="flex-1">
                     <div class="w-full relative flex items-center">
-                        <input type="text"
+                        <input type="search" v-model="title" @input="search"
                             class="block w-full relative border-none rounded-md bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-300 dark:focus:bg-neutral-700/50 focus:bg-neutral-200 focus:outline-none focus:ring-0 h-auto pl-9 py-1.5 placeholder:text-neutral-400 placeholder:text-sm placeholder:font-thin"
                             placeholder="Search Questions">
                         <span class="absolute left-4 text-neutral-400 dark:text-neutral-500 ">
@@ -245,19 +299,23 @@ const selectTag = (slug) => {
         </div>
 
         <div class="flex flex-wrap gap-2">
-            <div
-                class="flex gap-4 justify-between items-center bg-neutral-100 hover:bg-neutral-200 px-2 py-1 rounded-lg text-neutral-500 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300">
-                <span class="text-xs">Hard problem</span>
-                <span
+            <div v-if="$page.props.filters.difficulty"
+                class="capitalize flex gap-4 justify-between items-center bg-neutral-100 hover:bg-neutral-200 px-2 py-1 rounded-lg text-neutral-500 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300">
+                <span class="text-xs" :class="{
+                    'text-green-600': $page.props.filters.difficulty == 'easy',
+                    'text-orange-600': $page.props.filters.difficulty == 'medium',
+                    'text-red-600': $page.props.filters.difficulty == 'hard',
+                }">{{ $page.props.filters.difficulty }}</span>
+                <span @click="removeDifficulty"
                     class="cursor-pointer text-sm rounded-full px-1 py-0 bg-neutral-300 text-neutral-50 dark:bg-neutral-600 dark:text-neutral-800">
                     <font-awesome-icon icon="close" />
                 </span>
             </div>
 
-            <div
-                class="flex gap-4 justify-between items-center bg-neutral-100 hover:bg-neutral-200 px-2 py-1 rounded-lg text-neutral-500 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300">
-                <span class="text-xs">Hard problem</span>
-                <span
+            <div v-if="$page.props.filters.status"
+                class="capitalize flex gap-4 justify-between items-center bg-neutral-100 hover:bg-neutral-200 px-2 py-1 rounded-lg text-neutral-500 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300">
+                <span class="text-xs">{{ $page.props.filters.status }}</span>
+                <span @click="removeStatus"
                     class="cursor-pointer text-sm rounded-full px-1 py-0 bg-neutral-300 text-neutral-50 dark:bg-neutral-600 dark:text-neutral-800">
                     <font-awesome-icon icon="close" />
                 </span>

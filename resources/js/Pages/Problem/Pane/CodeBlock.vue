@@ -87,10 +87,10 @@ onBeforeMount(() => {
                 </div>
 
                 <div class="relative flex-1">
-                    <div v-if="testCase" class="h-full w-full p-4 absolute top-0  overflow-y-auto">
+                    <div v-if="testCase" class="h-full w-full p-4 absolute top-0  overflow-y-auto text-gray-500">
                         One
                     </div>
-                    <div v-else class="h-full w-full p-4 absolute top-0 overflow-y-auto">Two</div>
+                    <div v-else class="h-full w-full p-4 absolute top-0 overflow-y-auto text-gray-500">Two</div>
                 </div>
             </div>
         </pane>
