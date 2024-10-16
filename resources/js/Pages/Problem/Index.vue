@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { usePage, Head, Link, router } from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import StudyPlanCard from '@/Components/Problem/StudyPlanCard.vue'
@@ -22,11 +22,14 @@ import Pagination from '@/Components/Pagination.vue'
 
 const props = usePage().props;
 
+const showTopic = ref(false);
+
 const tagCollapse = ref(false);
 
 const tags = ref(props.tags);
 const topics = ref(props.topics);
 const problems = ref(props.problems);
+const companies = ref(props.companies);
 
 
 const scrollSection = ref(null);
@@ -84,6 +87,14 @@ const changeRange = () => {
 const updateProblems = (newProblems) => {
     problems.value = newProblems;
 }
+
+
+const searchCompany = ref(null);
+
+const filteredCompanies = computed(() => {
+    return companies.value.filter(company => company.name.toLowerCase().includes(searchCompany.value));
+})
+
 
 </script>
 
@@ -192,7 +203,7 @@ const updateProblems = (newProblems) => {
 
                 <!-- Filter Bar -->
 
-                <Filter @update-problems="updateProblems" />
+                <Filter @update-problems="updateProblems" @toggle-gear="showTopic = !showTopic" />
 
 
                 <!-- Table List -->
@@ -221,7 +232,7 @@ const updateProblems = (newProblems) => {
                             </thead>
                             <tbody>
                                 <tr v-for="problem in problems.data" :key="problem.id"
-                                    class="odd:bg-white odd:dark:bg-neutral-900 even:bg-neutral-50 even:dark:bg-neutral-800 ">
+                                    class="odd:bg-white odd:dark:bg-neutral-900 even:bg-neutral-50 even:dark:bg-neutral-800">
                                     <th scope="row"
                                         class="px-6 py-3 font-medium text-neutral-900 whitespace-nowrap dark:text-white">
                                         <span class="text-md text-yellow-400">
@@ -235,6 +246,16 @@ const updateProblems = (newProblems) => {
                                             problem.title
                                         }}
                                         </Link>
+
+                                        <div v-if="showTopic" class="flex flex-wrap gap-2 px-6 py-1">
+                                            <span v-for="tag in problem.tags" :key="problem.id + tag.id"
+                                                class="text-xs text-medium text-neutral-500 bg-neutral-200 dark:bg-neutral-700/50 px-2 rounded-lg capitalize">{{
+                                                tag.name }}</span>
+
+                                            <span v-if="problem.tags_count > 3"
+                                                class="text-xs text-medium text-neutral-500 bg-neutral-200 dark:bg-neutral-700/50 px-2 rounded-lg capitalize">{{
+                                                problem.tags_count - 3 }}+</span>
+                                        </div>
                                     </td>
 
                                     <td class="px-6 py-3">
@@ -274,7 +295,6 @@ const updateProblems = (newProblems) => {
             <!-- Sidebar content -->
             <div class="space-y-4">
 
-
                 <div class="dark:bg-neutral-800 rounded-md px-4 py-2 shadow-md">
 
                     <div class="flex justify-between items-center mb-4">
@@ -294,7 +314,7 @@ const updateProblems = (newProblems) => {
 
 
                     <div class="relative w-full flex items-center mb-4">
-                        <input type="text"
+                        <input type="text" v-model="searchCompany"
                             class="appearance-none relative border-none rounded-md bg-neutral-100 dark:bg-neutral-700/40 dark:text-neutral-300 focus:bg-neutral-200 focus:ring-0 dark:focus:bg-neutral-700 focus:outline-none w-full h-auto pl-9 py-1.5"
                             placeholder="Search for a company">
                         <span class="absolute left-4 text-neutral-400 dark:text-neutral-400 ">
@@ -304,25 +324,14 @@ const updateProblems = (newProblems) => {
 
 
 
-                    <div class="flex flex-wrap gap-2">
-                        <div
+                    <div class="flex flex-wrap gap-2 overflow-y-auto max-h-80 overflow-x-hidden custom-scrollbar">
+                        <div v-for="company in filteredCompanies.length ? filteredCompanies : companies"
+                            :key="company.id"
                             class="text-nowrap text-xs space-x-3 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700/50 dark:hover:bg-neutral-600/50 px-2 py-1 rounded-lg cursor-pointer">
-                            <span class="dark:text-neutral-300">Google</span>
-                            <span class="text-xs font-medium px-2 bg-yellow-400 text-neutral-800 rounded-full">50</span>
+                            <span class="dark:text-neutral-300">{{ company.name }}</span>
+                            <span class="text-xs font-medium px-2 bg-yellow-400 text-neutral-800 rounded-full">{{
+                                company.problems_count }}</span>
                         </div>
-
-                        <div
-                            class="text-nowrap text-xs space-x-3 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700/50 dark:hover:bg-neutral-600/50 px-2 py-1 rounded-lg cursor-pointer">
-                            <span class="dark:text-neutral-300">IBM</span>
-                            <span class="text-xs font-medium px-2 bg-yellow-400 text-neutral-800 rounded-full">50</span>
-                        </div>
-
-                        <div
-                            class="text-nowrap text-xs space-x-3 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700/50 dark:hover:bg-neutral-600/50 px-2 py-1 rounded-lg cursor-pointer">
-                            <span class="dark:text-neutral-300">Meta</span>
-                            <span class="text-xs font-medium px-2 bg-yellow-400 text-neutral-800 rounded-full">50</span>
-                        </div>
-
 
                     </div>
 
@@ -344,5 +353,24 @@ const updateProblems = (newProblems) => {
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
+}
+</style>
+
+<style scoped>
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    /* Set the width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #6b7280;
+    /* Tailwind `neutral-500` (Scrollbar thumb color) */
+    border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #4c4e52;
+    /* Tailwind `neutral-700` (Scrollbar track color) */
 }
 </style>

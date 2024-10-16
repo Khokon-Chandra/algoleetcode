@@ -1,12 +1,13 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { router, usePage } from '@inertiajs/vue3';
+import { Link, router, usePage } from '@inertiajs/vue3';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '../DropdownLink.vue';
+import Checkbox from '@/Components/Checkbox.vue';
 
 const page = usePage();
 
-const emit = defineEmits("update-problems");
+const emit = defineEmits(["update-problems","toggle-gear"]);
 
 
 let debounceTimer = null;
@@ -254,7 +255,7 @@ const removeStatus = () => {
 
                 <!-- Setting gear button -->
                 <div class="relative">
-                    <Dropdown align="left">
+                    <Dropdown align="left" :hide-content="false" >
                         <template #trigger>
                             <span class="inline-flex rounded-md">
                                 <button type="button"
@@ -266,12 +267,11 @@ const removeStatus = () => {
 
                         <template #content>
 
-                            <DropdownLink
-                                class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2"
-                                href="">
-                                <span class="text-nowrap">LeetCode curated Algo 170</span>
-                                <font-awesome-icon class="text-green-500" icon="check" />
-                            </DropdownLink>
+                            <label
+                                class="dark:text-neutral-300 dark:hover:bg-neutral-700 flex justify-between items-center gap-2 px-2 py-1">
+                                <Checkbox @click="emit('toggle-gear')"  />
+                                <span class="text-nowrap">Show topic tags</span>
+                            </label>
 
 
 
@@ -281,18 +281,19 @@ const removeStatus = () => {
 
 
                 <!-- Pick One randomly -->
-                <div class="ml-auto inline-flex shrink-0 items-center pl-2.5 cursor-pointer">
-                    <span
-                        class="flex h-8 w-8 items-center justify-center rounded-full shadow-md from-green-500 to-green-800 dark:to-dark-green-s bg-gradient-to-b shadow-fixed-green">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em"
-                            fill="currentColor" class="h-[18px] w-[18px] fill-none stroke-current text-white">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M2.398 18.296H5.38a3.6 3.6 0 002.93-1.508l1.023-1.433m11.522-9.71h-2.98a3.6 3.6 0 00-2.93 1.507l-1.146 1.603m5.298-5.747l2.502 2.636-2.502 2.637m0 7.438l2.502 2.636-2.502 2.637M2.398 6.052H5.38a3.6 3.6 0 012.93 1.507l6.635 9.289a3.6 3.6 0 002.93 1.507h2.98">
-                            </path>
-                        </svg>
-                    </span>
-                    <span class="text-green-500 dark:text-dark-green-s hidden pl-2.5 md:inline">Pick One</span>
-                </div>
+                <Link :href="route('problems.pickone')"
+                    class="ml-auto inline-flex shrink-0 items-center pl-2.5 cursor-pointer">
+                <span
+                    class="flex h-8 w-8 items-center justify-center rounded-full shadow-md from-green-500 to-green-800 dark:to-dark-green-s bg-gradient-to-b shadow-fixed-green">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em"
+                        fill="currentColor" class="h-[18px] w-[18px] fill-none stroke-current text-white">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M2.398 18.296H5.38a3.6 3.6 0 002.93-1.508l1.023-1.433m11.522-9.71h-2.98a3.6 3.6 0 00-2.93 1.507l-1.146 1.603m5.298-5.747l2.502 2.636-2.502 2.637m0 7.438l2.502 2.636-2.502 2.637M2.398 6.052H5.38a3.6 3.6 0 012.93 1.507l6.635 9.289a3.6 3.6 0 002.93 1.507h2.98">
+                        </path>
+                    </svg>
+                </span>
+                <span class="text-green-500 dark:text-dark-green-s hidden pl-2.5 md:inline">Pick One</span>
+                </Link>
             </div>
 
 

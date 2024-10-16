@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Problem;
 use App\Models\Tag;
 use App\Models\Topic;
@@ -14,7 +15,10 @@ class ProblemController extends Controller
     public function index(Request $request)
     {
 
-        $problems = Problem::with('tags')
+        $problems = Problem::with(['tags' => function ($query) {
+            $query->limit(3);
+        }])
+            ->withCount('tags')
             ->when($request->tags ?? false, function ($query, $tags) {
                 $query->whereHas('tags', function ($query) use ($tags) {
                     $query->whereIn('slug', explode(',', $tags));
@@ -45,8 +49,18 @@ class ProblemController extends Controller
             'filters'  => $request->all(),
             'tags'     => Tag::withCount('problems')->get(),
             'topics'   => Topic::all(),
+            'companies' => Company::withCount('problems')->get(),
             'problems' => $problems,
         ]);
+    }
+
+
+
+    public function pickOne()
+    {
+        $problem = Problem::inRandomOrder()->first();
+
+        return redirect()->route('problems.show', $problem->slug);
     }
 
 
