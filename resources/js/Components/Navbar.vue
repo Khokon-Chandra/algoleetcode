@@ -18,7 +18,9 @@ const toggleNavbar = () => {
     <nav class="mx-auto max-w-7xl px-6 sm:px-6 lg:px-8 flex justify-between items-center">
         <ul class="flex items-center gap-4">
             <li>
+                <Link href="/">
                 <AppLogo></AppLogo>
+                </Link>
             </li>
 
             <li class="hidden md:flex">
@@ -28,8 +30,9 @@ const toggleNavbar = () => {
             </li>
 
             <li class="hidden md:flex">
-                <Link class="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-neutral-100 py-3"
-                    href="#">
+                <Link :href="route('discussions.index')"
+                    :class="route().current('discussions.*') ? 'active' : ''"
+                    class="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-neutral-100 py-3">
                 Discuss</Link>
             </li>
         </ul>
@@ -147,8 +150,8 @@ const toggleNavbar = () => {
         <ul class="flex flex-col gap-1 p-6">
 
             <li>
-                <a class="text-neutral-600 dark:text-neutral-300 flex gap-4 items-center p-2 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800"
-                    href="javascript:void(0)">
+                <Link class="text-neutral-600 dark:text-neutral-300 flex gap-4 items-center p-2 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800"
+                    :href="route('problems.index')">
                     <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"
                             fill="currentColor">
                             <path fill-rule="evenodd"
@@ -156,23 +159,12 @@ const toggleNavbar = () => {
                                 clip-rule="evenodd"></path>
                         </svg></span>
                     <span>Problems</span>
-                </a>
+                </Link>
             </li>
+           
             <li>
-                <a class="text-neutral-600 dark:text-neutral-300 flex gap-4 items-center p-2 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800"
-                    href="javascript:void(0)">
-                    <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"
-                            fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M8.5 4.587v7.182c0 .575.184 1.463.707 2.18.487.665 1.312 1.251 2.793 1.251 1.48 0 2.306-.586 2.793-1.252.523-.716.707-1.604.707-2.179V4.587a10.732 10.732 0 00-7 0zm-1.557 9.371A5.957 5.957 0 016.5 11.77V8.6c-.536-.116-1.12-.158-1.587-.05-.312.073-.514.198-.644.358C4.14 9.064 4 9.357 4 9.923c0 1.399.848 2.694 2.361 3.687.186.122.38.238.582.348zM6.5 6.566V3.923a1 1 0 01.544-.89C7.779 2.656 9.674 2 12 2c2.325 0 4.221.656 4.956 1.033a1 1 0 01.544.89v2.643c.647-.101 1.364-.122 2.038.035.626.145 1.267.455 1.746 1.045.482.594.716 1.367.716 2.277 0 2.294-1.402 4.137-3.264 5.36-1.609 1.055-3.649 1.716-5.736 1.878V20h4.4a1 1 0 110 2H6.6a1 1 0 110-2H11v-2.839c-2.087-.162-4.127-.823-5.736-1.879C3.402 14.06 2 12.217 2 9.923c0-.91.234-1.683.716-2.277.48-.59 1.12-.9 1.746-1.045.674-.157 1.391-.136 2.038-.035zm11 2.033c.536-.116 1.12-.158 1.587-.05.312.073.515.198.645.358.127.157.268.45.268 1.016 0 1.399-.848 2.694-2.361 3.687-.186.122-.38.238-.582.348a5.956 5.956 0 00.443-2.189V8.6z"
-                                clip-rule="evenodd"></path>
-                        </svg></span>
-                    <span>Contest</span>
-                </a>
-            </li>
-            <li>
-                <a class="text-neutral-600 dark:text-neutral-300 flex gap-4 items-center p-2 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800"
-                    href="javascript:void(0)">
+                <Link class="text-neutral-600 dark:text-neutral-300 flex gap-4 items-center p-2 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800"
+                    :href="route('discussions.index')">
                     <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"
                             fill="currentColor">
                             <path fill-rule="evenodd"
@@ -180,7 +172,7 @@ const toggleNavbar = () => {
                                 clip-rule="evenodd"></path>
                         </svg></span>
                     <span>Discuss</span>
-                </a>
+                </Link>
             </li>
 
 
