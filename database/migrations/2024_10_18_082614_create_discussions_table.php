@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('discussion_type_id')->constrained('discussion_types', 'id');
-            $table->bigInteger('parent_id')->nullable();
+            $table->string('slug')->unique('disscussions_slug');
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->integer('vote')->default(0);

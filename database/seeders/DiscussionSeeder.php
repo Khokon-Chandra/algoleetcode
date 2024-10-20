@@ -13,6 +13,6 @@ class DiscussionSeeder extends Seeder
      */
     public function run(): void
     {
-        Discussion::factory(500)->create();
+        Discussion::factory(200)->create();
     }
 }

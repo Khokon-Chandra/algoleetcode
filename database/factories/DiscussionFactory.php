@@ -19,10 +19,11 @@ class DiscussionFactory extends Factory
     public function definition(): array
     {
         return [
+            'title' => fake()->sentence(),
+            'slug' => fake()->slug(10),
             'user_id' => User::inRandomOrder()->first()->id,
             'discussion_type_id' => DiscussionType::inRandomOrder()->first()->id,
-            'title' => fake()->sentence(),
-            'description' => fake()->paragraph(),
+            'description' => fake()->paragraph(10),
             'vote' => rand(1, 5000),
         ];
     }

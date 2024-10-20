@@ -2,9 +2,11 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Link } from '@inertiajs/vue3';
 import Pagination from '@/Components/Pagination.vue';
+import DefaultAvatarImage from '@/images/default_avatar.jpg';
 
 const props = defineProps({
     types: Object,
+    selectedType: String,
     discussions: Object
 })
 </script>
@@ -14,24 +16,27 @@ const props = defineProps({
 
 
             <div class="flex gap-4 overflow-x-hidden">
-                <Link href="#" v-for="item in types" :key="item.id"
-                    class="p-4 shadow-md h-18 flex items-center justify-center bg-white dark:bg-neutral-800 rounded-sm">
-                <h1 class="text-neutral-500 dark:text-neutral-500 text-lg font-bold">{{ item.name }}</h1>
+                <Link :href="route('discussions.index', item.slug)" v-for="item in types" :key="item.id" :class="{
+                    'bg-slate-700 text-white': item.slug === selectedType,
+                    ' bg-white dark:bg-neutral-800 text-neutral-500 dark:text-neutral-500': item.slug !== selectedType
+                }" class="p-4 shadow-md h-18 flex items-center justify-center rounded-sm">
+                <h1 class=" text-lg font-bold">{{ item.name }}</h1>
                 </Link>
             </div>
 
 
 
-            <div class="bg-neutral-200 dark:bg-neutral-800 rounded-md p-4">
+            <div class="bg-white dark:bg-neutral-800 rounded-md shadow-lg p-4">
 
 
                 <div v-for="discuss in discussions.data" :key="discuss.id"
                     class="flex items-center gap-4  border-b border-b-neutral-300 dark:border-b-neutral-700/50">
                     <div>
-                        <img class="size-8 rounded-full ring ring-blue-300" src="" alt="user image">
+                        <img class="size-8 rounded-full ring ring-gray-300" :src="DefaultAvatarImage" alt="user image">
                     </div>
                     <div class="mb-3 flex-1 space-y-2">
-                        <Link class="text-lg text-neutral-600 dark:text-neutral-300 capitalize">{{ discuss.title }}
+                        <Link :href="route('discussions.show', { type_slug: selectedType, slug: discuss.slug })"
+                            class="text-lg text-neutral-600 dark:text-neutral-300 capitalize">{{ discuss.title }}
                         </Link>
                         <div class="text-xs text-neutral-500 flex-col md:flex-row items-center gap-4">
                             <span title="Username">Username</span> |

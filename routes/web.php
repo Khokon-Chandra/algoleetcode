@@ -14,6 +14,8 @@ Route::post('problems/{slug}/run', [ProblemController::class, 'run'])->name('pro
 
 Route::get('/problems-pickone', [ProblemController::class, 'pickOne'])->name('problems.pickone');
 
-Route::resource('discussions', DiscussionController::class);
+Route::get('/discuss/{type_slug}/',[DiscussionController::class,'index'])->name('discussions.index');
+
+Route::get('/discuss/{type_slug}/{slug}',[DiscussionController::class,'show'])->name('discussions.show');
 
 require __DIR__ . '/auth.php';

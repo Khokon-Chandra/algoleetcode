@@ -30,7 +30,7 @@ const toggleNavbar = () => {
             </li>
 
             <li class="hidden md:flex">
-                <Link :href="route('discussions.index')"
+                <Link :href="route('discussions.index','all-interview-questions')"
                     :class="route().current('discussions.*') ? 'active' : ''"
                     class="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-neutral-100 py-3">
                 Discuss</Link>
@@ -164,7 +164,7 @@ const toggleNavbar = () => {
            
             <li>
                 <Link class="text-neutral-600 dark:text-neutral-300 flex gap-4 items-center p-2 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:bg-neutral-800"
-                    :href="route('discussions.index')">
+                    :href="route('discussions.index','all-interview-questions')">
                     <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"
                             fill="currentColor">
                             <path fill-rule="evenodd"
