@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::get('/', function () {
-    return "hello admin panel";
+    return Inertia::render('AdminPanel/Dashboard');
 })->name('dashboard');
