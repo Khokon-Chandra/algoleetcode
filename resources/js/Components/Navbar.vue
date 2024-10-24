@@ -94,6 +94,10 @@ const toggleNavbar = () => {
             </li>
         </ul>
 
+        <div v-else-if="$page.props.auth.admin">
+            <Link :href="route('admin.dashboard')" class="text-neutral-700 text-md hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100">Dashboard</Link>
+        </div>
+
         <div v-else class="gap-4 hidden md:flex items-center">
             <Link :href="route('register')"
                 class="text-neutral-700 text-md hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100">
