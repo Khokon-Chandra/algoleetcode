@@ -13,6 +13,17 @@ class TopicSeeder extends Seeder
      */
     public function run(): void
     {
-        Topic::factory(10)->create();
+        collect([
+            'Algorithm',
+            'Database',
+            'Shell',
+            'Concurrency',
+            'JavaScript',
+            'Pandas'
+        ])->each(function ($item) {
+            Topic::create([
+                'name' => $item,
+            ]);
+        });
     }
 }

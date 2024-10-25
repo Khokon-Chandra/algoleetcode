@@ -2,7 +2,12 @@
 import { ref, onMounted } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import SidebarLink from '@/Components/SidebarLink.vue';
-import { initDropdowns } from 'flowbite';
+import { initDrawers } from 'flowbite';
+
+
+onMounted(()=>{
+    initDrawers()
+})
 
 
 </script>
@@ -28,7 +33,7 @@ import { initDropdowns } from 'flowbite';
                 </li>
                 <li>
                     <SidebarLink :href="route('admin.problems.index')"
-                        :active="route().current('admin.problems.index')">
+                        :active="route().current('admin.problems.index') || route().current('admin.problems.create') || route().current('admin.problems.edit')">
                         <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">

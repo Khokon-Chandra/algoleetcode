@@ -14,7 +14,7 @@ class ProblemSeeder extends Seeder
      */
     public function run(): void
     {
-        $problems = Problem::factory(500)->create();
+        $problems = Problem::factory(300)->create();
 
         $tags = Tag::all();
 
@@ -22,7 +22,7 @@ class ProblemSeeder extends Seeder
 
         foreach ($problems as $problem) {
             $problem->tags()->attach(
-                $tags->random(rand(1, 100))->pluck('id')->toArray()
+                $tags->random(rand(1, 50))->pluck('id')->toArray()
             );
 
             $problem->companies()->attach(

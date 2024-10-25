@@ -20,7 +20,14 @@ class Problem extends Model
         'title',
         'description',
         'difficulty',
-        'acceptance'
+        'acceptance',
+        'examples',
+        'constraints',
+    ];
+
+
+    protected $casts = [
+        'examples' => 'json',
     ];
 
     /**
