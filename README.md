@@ -7,9 +7,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About AlgoLeetCode
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Welcome to AlgoLeetCode, an online platform dedicated to enhancing coding skills through diverse, algorithm-based problem-solving challenges inspired by *LeetCode*. This full-stack application is powered by **Laravel 11**, **Vue.js 3**, **Inertia.js**, and **Tailwind CSS** to provide a seamless and responsive user experience. Users can tackle coding problems, prepare for interviews, and track progress within an engaging, interactive platform. We extend full credit to <a href="https://leetcode.com">LeetCode</a> for the original concept and design inspiration behind this project.
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
