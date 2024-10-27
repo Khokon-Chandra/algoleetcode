@@ -1,20 +1,40 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { initDropdowns } from 'flowbite';
 import Sidebar from './Partial/Sidebar.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import AppLogo from '@/Components/Icon/AppLogo.vue';
+
+import Toastr from '@/Components/Toastr.vue';
 
 const showingNavigationDropdown = ref(false);
 
+
+const closeToastr = () => {
+    usePage().props.flash.success = null;
+}
+
 onMounted(() => {
     initDropdowns();
+})
+
+watch(() => usePage().props.flash.success, (newValue) => {
+    if (newValue) {
+        setTimeout(() => {
+            usePage().props.flash.success = false;
+        }, 5000);
+    }
 })
 </script>
 
 <template>
     <div>
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+
+
+            <Toastr v-if="$page.props.flash.success" type="success" :message="$page.props.flash.success"
+                @close-toastr="closeToastr" />
+
 
 
             <nav

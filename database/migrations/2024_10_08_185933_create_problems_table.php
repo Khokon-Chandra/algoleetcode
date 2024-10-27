@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('slug')->unique('unique_slug');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->enum('difficulty',['easy','medium','hard']);
+            $table->enum('difficulty', ['easy', 'medium', 'hard']);
             $table->float('acceptance')->default('0');
+            $table->json('examples')->nullable();
+            $table->json('constraints')->nullable();
             $table->timestamps();
         });
     }
