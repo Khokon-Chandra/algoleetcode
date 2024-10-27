@@ -27,7 +27,8 @@ class Problem extends Model
 
 
     protected $casts = [
-        'examples' => 'json',
+        'examples' => 'array',
+        'constraints' => 'array',
     ];
 
     /**
