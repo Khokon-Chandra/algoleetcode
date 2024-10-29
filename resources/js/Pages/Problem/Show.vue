@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { Link } from '@inertiajs/vue3';
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
 import Playground from '@/Layouts/Playground.vue';
@@ -36,7 +35,7 @@ onBeforeUnmount(() => {
         <splitpanes :horizontal="isHorizontal">
             <!-- Left Pane: Task Description -->
             <pane>
-                <Description/>
+                <Description />
             </pane>
 
             <!-- Right Pane: Code Editor -->

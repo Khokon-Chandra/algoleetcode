@@ -68,8 +68,7 @@ class ProblemController extends Controller
     public function show(Request $request, $slug)
     {
         return Inertia::render('Problem/Show', [
-            'filters' => $request->all(),
-            'problem' => [],
+            'problem' => Problem::with('tags', 'topic')->where('slug', $slug)->firstOrFail(),
             'slug' => $slug
         ]);
     }
