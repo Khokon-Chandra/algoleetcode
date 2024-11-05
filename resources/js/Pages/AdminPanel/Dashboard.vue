@@ -2,12 +2,13 @@
 import AuthenticatedLayout from '@/Layouts/AdminLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { onMounted } from 'vue'
-import { initModals } from 'flowbite'
 
-// initialize components based on data attribute selectors
-onMounted(() => {
-    initModals();
+defineProps({
+    user_count:Number,
+    problem_count: Number,
+    submission_count: Number,
 })
+
 </script>
 
 
@@ -20,17 +21,17 @@ onMounted(() => {
         <div class="grid grid-cols-3 gap-4 mb-4">
             <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
                 <p class="text-2xl text-gray-500 dark:text-gray-500">
-                   Total User : 234
+                   Total User : <span class="font-light">{{ user_count }}</span>
                 </p>
             </div>
             <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
                 <p class="text-2xl text-gray-500 dark:text-gray-500">
-                    Problems : 122
+                    Problems : {{ problem_count }}
                 </p>
             </div>
             <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
                 <p class="text-2xl text-gray-500 dark:text-gray-500">
-                    Submissions : 10898
+                    Submissions : {{ submission_count }}
                 </p>
             </div>
         </div>
